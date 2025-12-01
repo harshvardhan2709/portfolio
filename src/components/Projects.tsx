@@ -1,3 +1,5 @@
+// src/components/Projects.tsx
+
 import { useEffect, useRef, useState } from 'react';
 import { ExternalLink, Github } from 'lucide-react';
 
@@ -28,46 +30,44 @@ const Projects = () => {
 
   const projects = [
     {
-      title: 'E-Commerce Platform',
-      description: 'A full-stack e-commerce application with payment integration, inventory management, and real-time order tracking.',
-      tags: ['React', 'Node.js', 'PostgreSQL', 'Stripe'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
+      title: 'Movies-Website',
+      description:
+        'Full-stack MERN app to discover movies using a third-party API. React frontend + Node/Express backend and MongoDB for user data (watchlists).',
+      tags: ['React', 'Node.js', 'MongoDB', 'API'],
+      github: 'https://github.com/harshvardhan2709/Movies-Website',
+      demo: 'https://github.com/harshvardhan2709/Movies-Website',
     },
     {
-      title: 'AI Chat Application',
-      description: 'Real-time chat application powered by AI for smart responses and natural language processing.',
-      tags: ['TypeScript', 'Python', 'WebSocket', 'OpenAI'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
+      title: 'Freelancer Web Platform (Getlancer)',
+      description:
+        'Responsive freelance marketplace with role-based dashboards (Client & Freelancer), authentication, and job management.',
+      tags: ['React', 'Tailwind', 'MongoDB'],
+      github: 'https://github.com/prathmesh796/getlancer',
+      demo: 'https://github.com/prathmesh796/getlancer',
     },
     {
-      title: 'Task Management System',
-      description: 'Collaborative project management tool with drag-and-drop functionality and team collaboration features.',
-      tags: ['Next.js', 'Tailwind', 'Supabase', 'Auth'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
+      title: 'IoT Gate Control & Access Management App',
+      description:
+        'React Native frontend for IoT-based gate control with role-based access (Super Admin, Admin, User), integrated with REST APIs.',
+      tags: ['React Native', 'IoT', 'Role-Based Access'],
+      github: 'https://github.com/vishu-2004/IoT-Gate-Control-and-Access-management-app',
+      demo: 'https://github.com/vishu-2004/IoT-Gate-Control-and-Access-management-app',
     },
     {
-      title: 'Weather Dashboard',
-      description: 'Beautiful weather visualization app with location-based forecasts and historical data analytics.',
-      tags: ['React', 'API Integration', 'Charts', 'Maps'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
-    },
-    {
-      title: 'Portfolio Builder',
-      description: 'SaaS platform allowing developers to create and customize their portfolio websites with drag-and-drop.',
+      title: 'Portfolio Builder (SaaS idea)',
+      description:
+        'SaaS platform concept for developers to create customizable portfolios via drag-and-drop (prototype + frontend).',
       tags: ['React', 'Express', 'MongoDB', 'AWS'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
+      github: 'https://github.com/harshvardhan2709',
+      demo: 'https://github.com/harshvardhan2709',
     },
     {
-      title: 'Code Snippet Manager',
-      description: 'Chrome extension for developers to save, organize, and share code snippets with syntax highlighting.',
+      title: 'Code Snippet Manager (Chrome Extension)',
+      description:
+        'Chrome extension to save, organize, and share code snippets using IndexedDB and lightweight UI.',
       tags: ['JavaScript', 'Chrome API', 'IndexedDB'],
-      github: 'https://github.com',
-      demo: 'https://example.com',
+      github: 'https://github.com/harshvardhan2709',
+      demo: 'https://github.com/harshvardhan2709',
     },
   ];
 

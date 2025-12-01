@@ -29,18 +29,18 @@ const About = () => {
   const features = [
     {
       icon: <Code2 size={32} />,
-      title: 'Clean Code',
-      description: 'Writing maintainable and scalable code following best practices',
+      title: 'Frontend Specialist',
+      description: 'React.js, TypeScript & Tailwind — building responsive, accessible UIs',
     },
     {
       icon: <Laptop size={32} />,
-      title: 'Problem Solver',
-      description: 'Tackling complex challenges with creative and efficient solutions',
+      title: 'Full-Stack',
+      description: 'Node.js & Express backend experience with MongoDB and REST APIs',
     },
     {
       icon: <Rocket size={32} />,
       title: 'Fast Learner',
-      description: 'Constantly exploring new technologies and frameworks',
+      description: 'Quickly pick up new tools (React Native, Blockchain, Dev tooling)',
     },
   ];
 
@@ -61,33 +61,32 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div className="space-y-6">
               <p className="text-lg text-gray-300 leading-relaxed">
-                I'm a Computer Science student with a passion for creating elegant solutions to
-                complex problems. My journey in tech started with curiosity and has evolved into a
-                commitment to building impactful applications.
+                I'm Harshvardhan Uttam Sawant, a final-year Information Technology student (B.E.) specialising in frontend and mobile app development.
+                I enjoy building elegant, user-friendly interfaces and robust backends. My work spans React, React Native, Node.js, and MongoDB,
+                and I have experience in role-based access systems and IoT frontends through internships.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed">
-                I specialize in full-stack development, with a focus on modern web technologies.
-                When I'm not coding, you can find me exploring new frameworks, contributing to open
-                source, or working on personal projects that push my boundaries.
+                Currently contributing to a blockchain-based carbon credit tokenization platform and continuously exploring web3, React Native, and
+                performance-first front-end patterns. I focus on building scalable, maintainable code and contributing to open-source when possible.
               </p>
             </div>
 
             <div className="grid grid-cols-2 gap-6">
               <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-cyan-400 transition-all duration-300">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">15+</div>
-                <div className="text-gray-400">Projects Completed</div>
-              </div>
-              <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-cyan-400 transition-all duration-300">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">3+</div>
-                <div className="text-gray-400">Years Experience</div>
-              </div>
-              <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-cyan-400 transition-all duration-300">
                 <div className="text-3xl font-bold text-cyan-400 mb-2">10+</div>
-                <div className="text-gray-400">Technologies</div>
+                <div className="text-gray-400">Projects (personal & academic)</div>
               </div>
               <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-cyan-400 transition-all duration-300">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">100%</div>
-                <div className="text-gray-400">Dedication</div>
+                <div className="text-3xl font-bold text-cyan-400 mb-2">Internships</div>
+                <div className="text-gray-400">Climekare, Athena Automation</div>
+              </div>
+              <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-cyan-400 transition-all duration-300">
+                <div className="text-3xl font-bold text-cyan-400 mb-2">Tech Stack</div>
+                <div className="text-gray-400">React • Node • MongoDB • Blockchain</div>
+              </div>
+              <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-cyan-400 transition-all duration-300">
+                <div className="text-3xl font-bold text-cyan-400 mb-2">2026</div>
+                <div className="text-gray-400">Graduation Year</div>
               </div>
             </div>
           </div>

@@ -1,3 +1,5 @@
+// src/App.tsx
+
 import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
@@ -12,7 +14,7 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-      const scrollPosition = window.scrollY + 100;
+      const scrollPosition = window.scrollY + 120;
 
       for (const section of sections) {
         const element = document.getElementById(section);
@@ -26,13 +28,15 @@ function App() {
       }
     };
 
+    // run once to set initial active section
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
-      <Navigation activeSection={activeSection} />
+      <Navigation activeSection={activeSection} profileSrc="/profile.jpg" profileAlt="Harshvardhan Sawant" />
       <Hero />
       <About />
       <Skills />

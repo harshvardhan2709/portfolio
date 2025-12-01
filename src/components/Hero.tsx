@@ -1,3 +1,5 @@
+// src/components/Hero.tsx
+
 import { useEffect, useState } from 'react';
 import { ChevronDown, Github, Linkedin, Mail } from 'lucide-react';
 
@@ -33,20 +35,20 @@ const Hero = () => {
         <h1 className="text-5xl md:text-7xl font-bold text-white mb-6">
           Hi, I'm{' '}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
-            John Doe
+            Harshvardhan Uttam Sawant
           </span>
         </h1>
 
-        <p className="text-xl md:text-2xl text-gray-300 mb-4">Computer Science Student</p>
+        <p className="text-xl md:text-2xl text-gray-300 mb-4">Information Technology — Frontend & Mobile Developer</p>
 
         <p className="text-lg text-gray-400 mb-8 max-w-2xl mx-auto">
-          Passionate about building innovative solutions and exploring the endless possibilities of
-          technology
+          Building responsive web & mobile apps with React and modern backend stacks. Currently working on
+          blockchain-based carbon credit tokenization .
         </p>
 
         <div className="flex justify-center gap-4 mb-12">
           <a
-            href="https://github.com"
+            href="https://github.com/harshvardhan2709"
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 bg-slate-800 rounded-full hover:bg-cyan-500 transition-all duration-300 transform hover:scale-110"
@@ -54,7 +56,7 @@ const Hero = () => {
             <Github className="text-white" size={24} />
           </a>
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/harshvardhan-sawant-86656b266/"
             target="_blank"
             rel="noopener noreferrer"
             className="p-3 bg-slate-800 rounded-full hover:bg-cyan-500 transition-all duration-300 transform hover:scale-110"
@@ -62,7 +64,7 @@ const Hero = () => {
             <Linkedin className="text-white" size={24} />
           </a>
           <a
-            href="mailto:johndoe@example.com"
+            href="mailto:sawantharsh2022@gmail.com"
             className="p-3 bg-slate-800 rounded-full hover:bg-cyan-500 transition-all duration-300 transform hover:scale-110"
           >
             <Mail className="text-white" size={24} />

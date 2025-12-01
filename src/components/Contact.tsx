@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { Mail, MapPin, Send } from 'lucide-react';
+import { Mail, MapPin, Send, Phone } from 'lucide-react';
 
 const Contact = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -33,8 +33,10 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    // simple console submit - replace with your API or email handler if needed
     console.log('Form submitted:', formData);
     setFormData({ name: '', email: '', message: '' });
+    alert('Message sent (demo).');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -63,8 +65,8 @@ const Contact = () => {
               <div>
                 <h3 className="text-2xl font-semibold text-white mb-6">Let's work together</h3>
                 <p className="text-gray-400 leading-relaxed">
-                  I'm always open to discussing new projects, creative ideas, or opportunities to be
-                  part of your vision. Feel free to reach out!
+                  I'm open to internships, freelance projects, and collaborations in web & mobile development.
+                  Reach out and let's build something great.
                 </p>
               </div>
 
@@ -75,9 +77,19 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-medium mb-1">Email</h4>
-                    <a href="mailto:johndoe@example.com" className="text-gray-400 hover:text-cyan-400 transition-colors">
-                      johndoe@example.com
+                    <a href="mailto:sawantharsh2022@gmail.com" className="text-gray-400 hover:text-cyan-400 transition-colors">
+                      sawantharsh2022@gmail.com
                     </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="p-3 bg-slate-800 rounded-lg">
+                    <Phone className="text-cyan-400" size={24} />
+                  </div>
+                  <div>
+                    <h4 className="text-white font-medium mb-1">Phone</h4>
+                    <p className="text-gray-400">+91-9322758958</p>
                   </div>
                 </div>
 
@@ -87,7 +99,7 @@ const Contact = () => {
                   </div>
                   <div>
                     <h4 className="text-white font-medium mb-1">Location</h4>
-                    <p className="text-gray-400">San Francisco, CA</p>
+                    <p className="text-gray-400">Pune, Maharashtra, India</p>
                   </div>
                 </div>
               </div>
@@ -154,7 +166,7 @@ const Contact = () => {
 
           <div className="mt-16 pt-8 border-t border-slate-700 text-center">
             <p className="text-gray-400">
-              &copy; 2025 John Doe. Built with React & Tailwind CSS
+              &copy; 2025 Harshvardhan U. Sawant. Built with React & Tailwind CSS
             </p>
           </div>
         </div>

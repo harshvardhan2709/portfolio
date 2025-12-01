@@ -1,3 +1,5 @@
+// src/components/Skills.tsx
+
 import { useEffect, useRef, useState } from 'react';
 
 const Skills = () => {
@@ -30,27 +32,26 @@ const Skills = () => {
       title: 'Frontend',
       skills: [
         { name: 'React', level: 90 },
-        { name: 'TypeScript', level: 85 },
-        { name: 'Tailwind CSS', level: 95 },
-        { name: 'Next.js', level: 80 },
+        { name: 'TypeScript', level: 80 },
+        { name: 'Tailwind CSS', level: 90 },
+        { name: 'React Native', level: 75 },
       ],
     },
     {
       title: 'Backend',
       skills: [
-        { name: 'Node.js', level: 85 },
-        { name: 'Python', level: 90 },
-        { name: 'PostgreSQL', level: 80 },
-        { name: 'REST APIs', level: 88 },
+        { name: 'Node.js', level: 70 },
+        { name: 'Express.js', level: 70 },
+        { name: 'MongoDB', level: 80 },
+        { name: 'REST APIs', level: 70 },
       ],
     },
     {
-      title: 'Tools & Other',
+      title: 'Other & Tools',
       skills: [
-        { name: 'Git', level: 92 },
-        { name: 'Docker', level: 75 },
-        { name: 'AWS', level: 70 },
-        { name: 'Linux', level: 85 },
+        { name: 'Github', level: 90 },
+        { name: 'Blockchain (ERC-1155)', level: 30 },
+        { name: 'Linux', level: 40 },
       ],
     },
   ];
