@@ -53,22 +53,6 @@ const Projects = () => {
       github: 'https://github.com/vishu-2004/IoT-Gate-Control-and-Access-management-app',
       demo: 'https://github.com/vishu-2004/IoT-Gate-Control-and-Access-management-app',
     },
-    {
-      title: 'Portfolio Builder (SaaS idea)',
-      description:
-        'SaaS platform concept for developers to create customizable portfolios via drag-and-drop (prototype + frontend).',
-      tags: ['React', 'Express', 'MongoDB', 'AWS'],
-      github: 'https://github.com/harshvardhan2709',
-      demo: 'https://github.com/harshvardhan2709',
-    },
-    {
-      title: 'Code Snippet Manager (Chrome Extension)',
-      description:
-        'Chrome extension to save, organize, and share code snippets using IndexedDB and lightweight UI.',
-      tags: ['JavaScript', 'Chrome API', 'IndexedDB'],
-      github: 'https://github.com/harshvardhan2709',
-      demo: 'https://github.com/harshvardhan2709',
-    },
   ];
 
   return (

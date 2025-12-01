@@ -64,7 +64,7 @@ const Navigation = ({ activeSection, profileSrc, profileAlt = 'Profile' }: Navig
                   <img
                     src={profileSrc}
                     alt={profileAlt}
-                    className="w-10 h-10 md:w-12 md:h-12 rounded-full object-cover ring-2 ring-transparent hover:ring-cyan-400 transition-all duration-200 cursor-pointer"
+                    className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-transparent hover:ring-cyan-400 transition-all duration-200 cursor-pointer"
                   />
                 )}
               </button>

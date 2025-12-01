@@ -33,10 +33,15 @@ const Contact = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // simple console submit - replace with your API or email handler if needed
-    console.log('Form submitted:', formData);
+
+    const subject = encodeURIComponent("New message from portfolio contact form");
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage: ${formData.message}`
+    );
+
+    window.location.href = `mailto:harshvardhansawant2022.it@mmcoe.edu.in?subject=${subject}&body=${body}`;
+
     setFormData({ name: '', email: '', message: '' });
-    alert('Message sent (demo).');
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

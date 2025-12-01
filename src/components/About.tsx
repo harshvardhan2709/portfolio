@@ -62,8 +62,8 @@ const About = () => {
             <div className="space-y-6">
               <p className="text-lg text-gray-300 leading-relaxed">
                 I'm Harshvardhan Uttam Sawant, a final-year Information Technology student (B.E.) specialising in frontend and mobile app development.
-                I enjoy building elegant, user-friendly interfaces and robust backends. My work spans React, React Native, Node.js, and MongoDB,
-                and I have experience in role-based access systems and IoT frontends through internships.
+                I enjoy building elegant, user-friendly interfaces and backends. My work spans React, React Native, Node.js, and MongoDB,
+                and I have hand-on experience through internships.
               </p>
               <p className="text-lg text-gray-300 leading-relaxed">
                 Currently contributing to a blockchain-based carbon credit tokenization platform and continuously exploring web3, React Native, and
