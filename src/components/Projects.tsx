@@ -63,30 +63,30 @@ const Projects = () => {
             isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
           }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-white mb-4">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-400 mb-4">
+            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-400">Projects</span>
           </h2>
 
-          <div className="h-1 w-20 bg-gradient-to-r from-cyan-400 to-blue-500 mx-auto mb-16"></div>
+          <div className="h-1 w-20 bg-gradient-to-r from-primary-400 to-primary-400 mx-auto mb-16"></div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className={`bg-slate-800/50 backdrop-blur-sm rounded-lg border border-slate-700 overflow-hidden transition-all duration-500 hover:border-cyan-400 hover:-translate-y-2 ${
+                className={`bg-black backdrop-blur-sm rounded-lg border border-slate-700 overflow-hidden transition-all duration-500 hover:border-primary-400 hover:-translate-y-2 ${
                   isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                 }`}
                 style={{ transitionDelay: `${index * 100}ms` }}
               >
                 <div className="p-6">
-                  <h3 className="text-xl font-semibold text-white mb-3">{project.title}</h3>
+                  <h3 className="text-xl font-semibold text-gray-400 mb-3">{project.title}</h3>
                   <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.description}</p>
 
                   <div className="flex flex-wrap gap-2 mb-6">
                     {project.tags.map((tag, tagIndex) => (
                       <span
                         key={tagIndex}
-                        className="px-3 py-1 text-xs bg-slate-700/50 text-cyan-400 rounded-full"
+                        className="px-3 py-1 text-xs bg-slate-700/50 text-primary-400 rounded-full"
                       >
                         {tag}
                       </span>
@@ -98,7 +98,7 @@ const Projects = () => {
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors"
+                      className="flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors"
                     >
                       <Github size={18} />
                       <span className="text-sm">Code</span>
@@ -107,7 +107,7 @@ const Projects = () => {
                       href={project.demo}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-300 hover:text-cyan-400 transition-colors"
+                      className="flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors"
                     >
                       <ExternalLink size={18} />
                       <span className="text-sm">Demo</span>
