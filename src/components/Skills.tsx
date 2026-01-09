@@ -31,10 +31,10 @@ const Skills = () => {
     {
       title: 'Frontend',
       skills: [
-        { name: 'React', level: 90 },
-        { name: 'TypeScript', level: 80 },
-        { name: 'Tailwind CSS', level: 90 },
-        { name: 'React Native', level: 75 },
+        { name: 'React', level: 50 },
+        { name: 'TypeScript', level: 40 },
+        { name: 'Tailwind CSS', level: 30 },
+        { name: 'React Native', level: 45 },
       ],
     },
     {
@@ -50,7 +50,8 @@ const Skills = () => {
       title: 'Other & Tools',
       skills: [
         { name: 'Github', level: 90 },
-        { name: 'Blockchain (ERC-1155)', level: 30 },
+        { name: 'SQL', level: 80 },
+        { name: 'Blockchain (ERC-1155)', level: 20 },
         { name: 'Linux', level: 40 },
       ],
     },

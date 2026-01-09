@@ -61,7 +61,7 @@ const About = () => {
           <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
             <div className="space-y-6">
               <p className="text-lg text-gray-300 leading-relaxed">
-                I'm Harshvardhan Uttam Sawant, a final-year Information Technology student (B.E.) specialising in frontend and mobile app development.
+                I'm Harshvardhan Sawant, a final-year Information Technology student (B.E.) specialising in frontend and mobile app development.
                 I enjoy building elegant, user-friendly interfaces and backends. My work spans React, React Native, Node.js, and MongoDB,
                 and I have hand-on experience through internships.
               </p>
@@ -73,7 +73,7 @@ const About = () => {
 
             <div className="grid grid-cols-2 gap-6">
               <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-cyan-400 transition-all duration-300">
-                <div className="text-3xl font-bold text-cyan-400 mb-2">10+</div>
+                <div className="text-3xl font-bold text-cyan-400 mb-2">5+</div>
                 <div className="text-gray-400">Projects (personal & academic)</div>
               </div>
               <div className="bg-slate-800/50 backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-cyan-400 transition-all duration-300">
