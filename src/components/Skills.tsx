@@ -27,81 +27,48 @@ const Skills = () => {
     };
   }, []);
 
-  const skillCategories = [
-    {
-      title: 'Frontend',
-      skills: [
-        { name: 'React', level: 50 },
-        { name: 'TypeScript', level: 40 },
-        { name: 'Tailwind CSS', level: 30 },
-        { name: 'React Native', level: 45 },
-      ],
-    },
-    {
-      title: 'Backend',
-      skills: [
-        { name: 'Node.js', level: 70 },
-        { name: 'Express.js', level: 70 },
-        { name: 'MongoDB', level: 80 },
-        { name: 'REST APIs', level: 70 },
-      ],
-    },
-    {
-      title: 'Other & Tools',
-      skills: [
-        { name: 'Github', level: 90 },
-        { name: 'SQL', level: 80 },
-        { name: 'Blockchain (ERC-1155)', level: 20 },
-        { name: 'Linux', level: 40 },
-      ],
-    },
-  ];
-
   return (
-    <section id="skills" className="min-h-screen flex items-center py-20 bg-black" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+    <section id="skills" className="min-h-screen flex items-center py-20 bg-slate-950" ref={sectionRef}>
+      <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
         <div
-          className={`transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-400 mb-4">
-            Technical <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-400">Skills</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-2">
+            Skills
           </h2>
+          <div className="w-16 h-1 bg-primary-400 mb-10"></div>
 
-          <div className="h-1 w-20 bg-gradient-to-r from-primary-400 to-primary-400 mx-auto mb-16"></div>
+          <div className="space-y-5 text-gray-400">
+            <div className="bg-slate-900/40 border border-slate-800 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-gray-200 mb-3">Frontend</h3>
+              <p className="leading-relaxed text-gray-400">
+                React, TypeScript, Tailwind, React Native. Used React for 2+ years, TypeScript for about a year.
+                Comfortable with hooks, context, and component patterns. Still learning better state management approaches.
+              </p>
+            </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {skillCategories.map((category, categoryIndex) => (
-              <div
-                key={categoryIndex}
-                className={`transition-all duration-1000 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-                style={{ transitionDelay: `${categoryIndex * 200}ms` }}
-              >
-                <h3 className="text-2xl font-semibold text-primary-400 mb-6">{category.title}</h3>
-                <div className="space-y-6">
-                  {category.skills.map((skill, skillIndex) => (
-                    <div key={skillIndex}>
-                      <div className="flex justify-between mb-2">
-                        <span className="text-gray-400 font-medium">{skill.name}</span>
-                        <span className="text-gray-400">{skill.level}%</span>
-                      </div>
-                      <div className="h-3 bg-slate-800 rounded-full overflow-hidden">
-                        <div
-                          className="h-full bg-gradient-to-r from-primary-400 to-primary-400 rounded-full transition-all duration-1000 ease-out"
-                          style={{
-                            width: isVisible ? `${skill.level}%` : '0%',
-                            transitionDelay: `${(categoryIndex * 200) + (skillIndex * 100)}ms`,
-                          }}
-                        ></div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+            <div className="bg-slate-900/40 border border-slate-800 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-gray-200 mb-3">Backend</h3>
+              <p className="leading-relaxed text-gray-400">
+                Node.js, Express, MongoDB, REST APIs. MongoDB is my go-to database.
+                Built several CRUD apps and handled auth flows. Not an expert but can build functional backends.
+              </p>
+            </div>
+
+            <div className="bg-slate-900/40 border border-slate-800 rounded-lg p-6">
+              <h3 className="text-lg font-semibold text-gray-200 mb-3">Tools & Other</h3>
+              <p className="leading-relaxed text-gray-400">
+                Git/GitHub for version control, basic Linux commands, SQL (used in some projects).
+                Currently learning blockchain concepts (ERC-1155) for my current project.
+              </p>
+            </div>
+
+            <div className="pt-6 mt-2 border-t border-slate-700/50">
+              <p className="text-sm text-gray-500">
+                Main stack: MERN (MongoDB, Express, React, Node.js) + TypeScript + Tailwind
+              </p>
+            </div>
           </div>
         </div>
       </div>

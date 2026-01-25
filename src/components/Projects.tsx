@@ -32,24 +32,24 @@ const Projects = () => {
     {
       title: 'Movies-Website',
       description:
-        'Full-stack MERN app to discover movies using a third-party API. React frontend + Node/Express backend and MongoDB for user data (watchlists).',
-      tags: ['React', 'Node.js', 'MongoDB', 'API'],
+        'Movie discovery app using MERN stack. Used TMDB API on the frontend, built a watchlist system with MongoDB. Had to figure out how to handle API rate limits and cache properly. Node backend mostly handles auth and user data.',
+      tags: ['React', 'Node.js', 'MongoDB', 'TMDB API'],
       github: 'https://github.com/harshvardhan2709/Movies-Website',
       demo: 'https://github.com/harshvardhan2709/Movies-Website',
     },
     {
-      title: 'Freelancer Web Platform (Getlancer)',
+      title: 'Getlancer',
       description:
-        'Responsive freelance marketplace with role-based dashboards (Client & Freelancer), authentication, and job management.',
-      tags: ['React', 'Tailwind', 'MongoDB'],
+        'Freelance marketplace with role-based dashboards. Built with a team—I handled most of the client-side dashboard and authentication flow. Learned about handling different user types in React without overcomplicating state. Used Tailwind which sped things up.',
+      tags: ['React', 'Tailwind', 'MongoDB', 'Auth'],
       github: 'https://github.com/prathmesh796/getlancer',
       demo: 'https://github.com/prathmesh796/getlancer',
     },
     {
-      title: 'IoT Gate Control & Access Management App',
+      title: 'IoT Gate Control App',
       description:
-        'React Native frontend for IoT-based gate control with role-based access (Super Admin, Admin, User), integrated with REST APIs.',
-      tags: ['React Native', 'IoT', 'Role-Based Access'],
+        'React Native app for controlling access to IoT gates. Three role types (Super Admin, Admin, User), REST API integration. First time dealing with role-based permissions on mobile—took a while to get the async storage and API token flow right.',
+      tags: ['React Native', 'IoT', 'REST API'],
       github: 'https://github.com/vishu-2004/IoT-Gate-Control-and-Access-management-app',
       demo: 'https://github.com/vishu-2004/IoT-Gate-Control-and-Access-management-app',
     },
@@ -57,62 +57,55 @@ const Projects = () => {
 
   return (
     <section id="projects" className="min-h-screen flex items-center py-20" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="max-w-5xl mx-auto px-6 sm:px-8 lg:px-12 w-full">
         <div
-          className={`transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-400 mb-4">
-            Featured <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-400">Projects</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-2">
+            Projects
           </h2>
+          <div className="w-16 h-1 bg-primary-400 mb-12"></div>
 
-          <div className="h-1 w-20 bg-gradient-to-r from-primary-400 to-primary-400 mx-auto mb-16"></div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 gap-6">
             {projects.map((project, index) => (
               <div
                 key={index}
-                className={`bg-black backdrop-blur-sm rounded-lg border border-slate-700 overflow-hidden transition-all duration-500 hover:border-primary-400 hover:-translate-y-2 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-                style={{ transitionDelay: `${index * 100}ms` }}
+                className="bg-slate-900/60 rounded-lg border border-slate-700/50 p-6 hover:border-primary-400/50 hover:bg-slate-900/80 transition-all"
               >
-                <div className="p-6">
-                  <h3 className="text-xl font-semibold text-gray-400 mb-3">{project.title}</h3>
-                  <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.description}</p>
+                <h3 className="text-xl font-semibold text-gray-200 mb-3">{project.title}</h3>
+                <p className="text-gray-400 mb-4 text-sm leading-relaxed">{project.description}</p>
 
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {project.tags.map((tag, tagIndex) => (
-                      <span
-                        key={tagIndex}
-                        className="px-3 py-1 text-xs bg-slate-700/50 text-primary-400 rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {project.tags.map((tag, tagIndex) => (
+                    <span
+                      key={tagIndex}
+                      className="text-xs text-gray-500"
+                    >
+                      {tag}{tagIndex < project.tags.length - 1 ? ' •' : ''}
+                    </span>
+                  ))}
+                </div>
 
-                  <div className="flex gap-4">
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors"
-                    >
-                      <Github size={18} />
-                      <span className="text-sm">Code</span>
-                    </a>
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors"
-                    >
-                      <ExternalLink size={18} />
-                      <span className="text-sm">Demo</span>
-                    </a>
-                  </div>
+                <div className="flex gap-4">
+                  <a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors text-sm"
+                  >
+                    <Github size={18} />
+                    <span className="text-sm">Code</span>
+                  </a>
+                  <a
+                    href={project.demo}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2 text-gray-400 hover:text-primary-400 transition-colors"
+                  >
+                    <ExternalLink size={18} />
+                    <span className="text-sm">Demo</span>
+                  </a>
                 </div>
               </div>
             ))}

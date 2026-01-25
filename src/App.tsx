@@ -35,7 +35,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-secondary-900 via-secondary-800 to-secondary-900">
+    <div className="min-h-screen bg-black">
       <Navigation activeSection={activeSection} profileSrc="/profile.jpg" profileAlt="Harshvardhan Sawant" />
       <Hero />
       <About />

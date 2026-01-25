@@ -55,15 +55,13 @@ const Contact = () => {
     <section id="contact" className="min-h-screen flex items-center py-20 bg-black" ref={sectionRef}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
         <div
-          className={`transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-400 mb-4">
-            Get In <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-400">Touch</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-2">
+            Get in touch
           </h2>
-
-          <div className="h-1 w-20 bg-gradient-to-r from-primary-400 to-primary-400 mx-auto mb-16"></div>
+          <div className="w-16 h-1 bg-primary-400 mb-12"></div>
 
           <div className="grid md:grid-cols-2 gap-12">
             <div className="space-y-8">
@@ -161,10 +159,10 @@ const Contact = () => {
 
               <button
                 type="submit"
-                className="w-full py-3 px-6 bg-gradient-to-r from-primary-400 to-primary-400 text-black font-medium rounded-lg hover:shadow-lg hover:shadow-primary-400/50 transition-all duration-300 flex items-center justify-center gap-2 group"
+                className="w-full py-3 px-6 bg-primary-400 text-black font-medium rounded-lg hover:bg-primary-500 transition-colors flex items-center justify-center gap-2"
               >
                 Send Message
-                <Send size={18} className="group-hover:translate-x-1 transition-transform" />
+                <Send size={18} />
               </button>
             </form>
           </div>

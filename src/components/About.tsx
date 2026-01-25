@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import { Code2, Laptop, Rocket } from 'lucide-react';
 
 const About = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -26,85 +25,40 @@ const About = () => {
     };
   }, []);
 
-  const features = [
-    {
-      icon: <Code2 size={32} />,
-      title: 'Frontend Specialist',
-      description: 'React.js, TypeScript & Tailwind — building responsive, accessible UIs',
-    },
-    {
-      icon: <Laptop size={32} />,
-      title: 'Full-Stack',
-      description: 'Node.js & Express backend experience with MongoDB and REST APIs',
-    },
-    {
-      icon: <Rocket size={32} />,
-      title: 'Fast Learner',
-      description: 'Quickly pick up new tools (React Native, Blockchain, Dev tooling)',
-    },
-  ];
-
   return (
-    <section id="about" className="min-h-screen flex items-center py-20" ref={sectionRef}>
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="about" className="min-h-screen flex items-center py-20 bg-slate-950" ref={sectionRef}>
+      <div className="max-w-4xl mx-auto px-6 sm:px-8 lg:px-12">
         <div
-          className={`transition-all duration-1000 ${
-            isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-          }`}
+          className={`transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'
+            }`}
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-center text-gray-400 mb-4">
-            About <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-400">Me</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-100 mb-2">
+            About
           </h2>
+          <div className="w-16 h-1 bg-primary-400 mb-8"></div>
 
-          <div className="h-1 w-20 bg-gradient-to-r from-primary-400 to-primary-400 mx-auto mb-12"></div>
+          <div className="bg-slate-900/40 border border-slate-800 rounded-lg p-8 space-y-5 text-gray-400 leading-relaxed">
+            <p>
+              I'm in my final year studying IT. I've been writing code for a few years now—mostly React, React Native, and Node.js.
+            </p>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center mb-16">
-            <div className="space-y-6">
-              <p className="text-lg text-gray-400 leading-relaxed">
-                I'm Harshvardhan Sawant, a final-year Information Technology student (B.E.) specialising in frontend and mobile app development.
-                I enjoy building elegant, user-friendly interfaces and backends. My work spans React, React Native, Node.js, and MongoDB,
-                and I have hand-on experience through internships.
-              </p>
-              <p className="text-lg text-gray-400 leading-relaxed">
-                Currently contributing to a blockchain-based carbon credit tokenization platform and continuously exploring web3, React Native, and
-                performance-first front-end patterns. I focus on building scalable, maintainable code and contributing to open-source when possible.
-              </p>
-            </div>
+            <p>
+              I did two internships (Climekare and Athena Automation) where I built frontend stuff and worked with APIs.
+              Right now I'm contributing to a carbon credit tokenization project using blockchain (ERC-1155), which has been a learning curve.
+            </p>
 
-            <div className="grid grid-cols-2 gap-6">
-              <div className="bg-black backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-primary-400 transition-all duration-300">
-                <div className="text-3xl font-bold text-primary-400 mb-2">5+</div>
-                <div className="text-gray-400">Projects (personal & academic)</div>
-              </div>
-              <div className="bg-black backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-primary-400 transition-all duration-300">
-                <div className="text-3xl font-bold text-primary-400 mb-2">Internships</div>
-                <div className="text-gray-400">Climekare, Athena Automation</div>
-              </div>
-              <div className="bg-black backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-primary-400 transition-all duration-300">
-                <div className="text-3xl font-bold text-primary-400 mb-2">Tech Stack</div>
-                <div className="text-gray-400">React • Node • MongoDB • Blockchain</div>
-              </div>
-              <div className="bg-black backdrop-blur-sm p-6 rounded-lg border border-slate-700 hover:border-primary-400 transition-all duration-300">
-                <div className="text-3xl font-bold text-primary-400 mb-2">2026</div>
-                <div className="text-gray-400">Graduation Year</div>
-              </div>
-            </div>
-          </div>
+            <p>
+              I like figuring out how to make things work, even when documentation is unclear. I'm comfortable with MERN stack
+              and trying to get better at TypeScript and writing cleaner code. Still learning constantly.
+            </p>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {features.map((feature, index) => (
-              <div
-                key={index}
-                className={`bg-black backdrop-blur-sm p-8 rounded-lg border border-slate-700 hover:border-primary-400 transition-all duration-300 transform hover:-translate-y-2 ${
-                  isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                }`}
-                style={{ transitionDelay: `${index * 200}ms` }}
-              >
-                <div className="text-primary-400 mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold text-gray-400 mb-3">{feature.title}</h3>
-                <p className="text-gray-400">{feature.description}</p>
-              </div>
-            ))}
+            <p className="pt-4">
+              <span className="text-gray-300 font-medium">Currently:</span> Final year B.E. in Information Technology, graduating 2026
+              <br />
+              <span className="text-gray-300 font-medium">Internships:</span> Climekare, Athena Automation
+              <br />
+              <span className="text-gray-300 font-medium">Stack:</span> React • React Native • Node.js • MongoDB • TypeScript
+            </p>
           </div>
         </div>
       </div>
