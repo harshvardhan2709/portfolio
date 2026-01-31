@@ -57,7 +57,7 @@ const About = () => {
               <br />
               <span className="text-gray-300 font-medium">Internships:</span> Climekare, Athena Automation
               <br />
-              <span className="text-gray-300 font-medium">Stack:</span> React • React Native • Node.js • MongoDB • TypeScript
+              <span className="text-gray-300 font-medium">Stack:</span> React • React Native • Node.js • SQL • TypeScript
             </p>
           </div>
         </div>

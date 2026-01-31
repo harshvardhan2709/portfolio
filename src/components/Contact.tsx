@@ -169,7 +169,7 @@ const Contact = () => {
 
           <div className="mt-16 pt-8 border-t border-slate-700 text-center">
             <p className="text-gray-400">
-              &copy; 2025 Harshvardhan U. Sawant. Built with React & Tailwind CSS
+              &copy; 2025 Harshvardhan Sawant. Built with React & Tailwind CSS
             </p>
           </div>
         </div>

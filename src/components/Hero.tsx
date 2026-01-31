@@ -30,7 +30,7 @@ const Hero = () => {
 
         <p className="text-base text-gray-400 mb-8 max-w-xl leading-relaxed">
           I build web and mobile apps. Right now I'm working on carbon credit tokenization with blockchain (learning as I go).
-          Before that, music apps and IoT stuff.
+          Before that, IoT mobile Application and Movie Website.
         </p>
 
         <div className="flex gap-4">
