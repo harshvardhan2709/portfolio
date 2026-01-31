@@ -39,7 +39,7 @@ const About = () => {
 
           <div className="bg-slate-900/40 border border-slate-800 rounded-lg p-8 space-y-5 text-gray-400 leading-relaxed">
             <p>
-              I'm in my final year studying IT. I've been writing code for a few years now—mostly React, React Native, and Node.js.
+              I'm in my final year studying IT. I've been writing code for a few years now-mostly React, React Native, and Node.js.
             </p>
 
             <p>

@@ -40,7 +40,7 @@ const Projects = () => {
     {
       title: 'Getlancer',
       description:
-        'Freelance marketplace with role-based dashboards. Built with a team—I handled most of the client-side dashboard and authentication flow. Learned about handling different user types in React without overcomplicating state. Used Tailwind which sped things up.',
+        'Freelance marketplace with role-based dashboards. Built with a team-I handled most of the client-side dashboard and authentication flow. Learned about handling different user types in React without overcomplicating state. Used Tailwind which sped things up.',
       tags: ['React', 'Tailwind', 'MongoDB', 'Auth'],
       github: 'https://github.com/prathmesh796/getlancer',
       demo: 'https://github.com/prathmesh796/getlancer',
@@ -48,7 +48,7 @@ const Projects = () => {
     {
       title: 'IoT Gate Control App',
       description:
-        'React Native app for controlling access to IoT gates. Three role types (Super Admin, Admin, User), REST API integration. First time dealing with role-based permissions on mobile—took a while to get the async storage and API token flow right.',
+        'React Native app for controlling access to IoT gates. Three role types (Super Admin, Admin, User), REST API integration. First time dealing with role-based permissions on mobile-took a while to get the async storage and API token flow right.',
       tags: ['React Native', 'IoT', 'REST API'],
       github: 'https://github.com/vishu-2004/IoT-Gate-Control-and-Access-management-app',
       demo: 'https://github.com/vishu-2004/IoT-Gate-Control-and-Access-management-app',
