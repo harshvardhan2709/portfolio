@@ -1,47 +1,35 @@
-// src/App.tsx
-
-import { useState, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import About from './components/About';
-import Skills from './components/Skills';
+import Experience from './components/Experience';
 import Projects from './components/Projects';
+import Skills from './components/Skills';
+import Education from './components/Education';
 import Contact from './components/Contact';
+import Footer from './components/Footer';
+import { ScrollProgress } from './components/ui/ScrollProgress';
+import { useScrollSpy } from './hooks/useScrollSpy';
+import { SECTION_IDS } from './data/constants';
 
 function App() {
-  const [activeSection, setActiveSection] = useState('home');
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const sections = ['home', 'about', 'skills', 'projects', 'contact'];
-      const scrollPosition = window.scrollY + 120;
-
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section);
-            break;
-          }
-        }
-      }
-    };
-
-    // run once to set initial active section
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const activeSection = useScrollSpy([...SECTION_IDS]);
 
   return (
-    <div className="min-h-screen bg-black">
-      <Navigation activeSection={activeSection} profileSrc="/profile.jpg" profileAlt="Harshvardhan Sawant" />
-      <Hero />
-      <About />
-      <Skills />
-      <Projects />
-      <Contact />
+    <div className="min-h-screen bg-bg-primary noise-bg">
+      <ScrollProgress />
+      <Navigation activeSection={activeSection} />
+
+      <main>
+        <Hero />
+        <About />
+        <Experience />
+        <Projects />
+        <Skills />
+        <Education />
+        <Contact />
+      </main>
+
+      <Footer />
     </div>
   );
 }

@@ -1,66 +1,131 @@
-// src/components/Hero.tsx
-
-import { useEffect, useState } from 'react';
-import { Github, Linkedin, Mail } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Github, Linkedin, Mail, ArrowDown } from 'lucide-react';
+import { PERSONAL, SOCIAL } from '../data/constants';
+import { Button } from './ui/Button';
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const stagger = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.12,
+        delayChildren: 0.3,
+      },
+    },
+  };
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  const fadeUp = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: 'easeOut' as const },
+    },
+  };
 
   return (
     <section
       id="home"
-      className="min-h-screen flex items-center relative"
+      className="relative min-h-screen flex items-center overflow-hidden"
     >
-      <div
-        className={`max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 transition-opacity duration-700 ${isVisible ? 'opacity-100' : 'opacity-0'
-          }`}
-      >
-        <h1 className="text-5xl md:text-6xl font-bold text-gray-100 mb-2">
-          Harshvardhan Sawant
-        </h1>
-        <div className="w-16 h-1 bg-primary-400 mb-6"></div>
-
-        <p className="text-xl md:text-2xl text-gray-300 mb-8 font-medium">
-          Frontend & Mobile Developer
-        </p>
-
-        <p className="text-base text-gray-400 mb-8 max-w-xl leading-relaxed">
-          I build web and mobile apps. Right now I'm working on carbon credit tokenization with blockchain (learning as I go).
-          Before that, IoT mobile Application and Movie Website.
-        </p>
-
-        <div className="flex gap-4">
-          <a
-            href="https://github.com/harshvardhan2709"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-slate-800/80 rounded-lg hover:bg-primary-400/10 hover:border hover:border-primary-400 transition-all"
-            aria-label="GitHub"
-          >
-            <Github className="text-gray-400" size={20} />
-          </a>
-          <a
-            href="https://www.linkedin.com/in/harshvardhan-sawant-86656b266/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 bg-slate-800/80 rounded-lg hover:bg-primary-400/10 hover:border hover:border-primary-400 transition-all"
-            aria-label="LinkedIn"
-          >
-            <Linkedin className="text-gray-400" size={20} />
-          </a>
-          <a
-            href="mailto:sawantharsh2022@gmail.com"
-            className="p-3 bg-slate-800/80 rounded-lg hover:bg-primary-400/10 hover:border hover:border-primary-400 transition-all"
-            aria-label="Email"
-          >
-            <Mail className="text-gray-400" size={20} />
-          </a>
-        </div>
+      {/* Background grid + gradient */}
+      <div className="absolute inset-0 grid-bg" />
+      <div className="absolute inset-0">
+        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] bg-accent/5 rounded-full blur-[128px]" />
+        <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-accent-light/3 rounded-full blur-[100px]" />
       </div>
+
+      <motion.div
+        variants={stagger}
+        initial="hidden"
+        animate="visible"
+        className="section-container relative z-10 py-32"
+      >
+        {/* Availability badge */}
+        <motion.div variants={fadeUp} className="mb-8">
+          <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-bg-surface border border-border rounded-full text-caption text-text-muted">
+            <span className="w-2 h-2 bg-accent-mint rounded-full animate-pulse-slow" />
+            {PERSONAL.availability}
+          </span>
+        </motion.div>
+
+        {/* Name */}
+        <motion.h1
+          variants={fadeUp}
+          className="text-display-sm md:text-display text-text-primary font-bold mb-4"
+        >
+          {PERSONAL.name}
+        </motion.h1>
+
+        {/* Headline */}
+        <motion.p
+          variants={fadeUp}
+          className="text-heading-sm md:text-heading text-text-muted mb-6"
+        >
+          {PERSONAL.headline}
+        </motion.p>
+
+        {/* Tagline */}
+        <motion.p
+          variants={fadeUp}
+          className="text-body-lg text-text-secondary max-w-xl mb-4 leading-relaxed"
+        >
+          {PERSONAL.tagline}
+        </motion.p>
+
+        {/* Current focus */}
+        <motion.p
+          variants={fadeUp}
+          className="text-caption text-text-muted mb-10 font-mono"
+        >
+          Currently building:{' '}
+          <span className="text-accent-mint">{PERSONAL.currentFocus}</span>
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mb-12">
+          <Button
+            variant="primary"
+            href="#projects"
+            icon={<ArrowDown size={14} />}
+          >
+            View Projects
+          </Button>
+          <Button
+            variant="secondary"
+            href={PERSONAL.resumeUrl}
+            external={false}
+          >
+            Download Resume
+          </Button>
+        </motion.div>
+
+        {/* Social links */}
+        <motion.div variants={fadeUp} className="flex items-center gap-4">
+          {[
+            { href: SOCIAL.github, icon: Github, label: 'GitHub' },
+            { href: SOCIAL.linkedin, icon: Linkedin, label: 'LinkedIn' },
+            { href: SOCIAL.email, icon: Mail, label: 'Email' },
+          ].map(({ href, icon: Icon, label }) => (
+            <a
+              key={label}
+              href={href}
+              target={label !== 'Email' ? '_blank' : undefined}
+              rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
+              className="group p-3 rounded-lg border border-border hover:border-border-hover hover:bg-bg-elevated transition-all duration-300"
+              aria-label={label}
+            >
+              <Icon
+                size={18}
+                className="text-text-muted group-hover:text-accent-mint transition-colors duration-300"
+              />
+            </a>
+          ))}
+
+          <span className="h-6 w-px bg-border ml-2" />
+          <span className="text-caption text-text-muted">{PERSONAL.location}</span>
+        </motion.div>
+      </motion.div>
     </section>
   );
 };

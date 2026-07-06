@@ -1,40 +1,27 @@
 import { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Menu, X, Download } from 'lucide-react';
+import { NAV_ITEMS, PERSONAL } from '../data/constants';
 
 interface NavigationProps {
   activeSection: string;
-  profileSrc?: string;
-  profileAlt?: string;
 }
 
-const Navigation = ({ activeSection, profileSrc, profileAlt = 'Profile' }: NavigationProps) => {
+const Navigation = ({ activeSection }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isImageOpen, setIsImageOpen] = useState(false); // NEW → full screen view state
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll);
-
-    // Close full image on ESC key
-    const escClose = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsImageOpen(false);
-    };
-    window.addEventListener('keydown', escClose);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.removeEventListener('keydown', escClose);
-    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navItems = [
-    { id: 'home', label: 'Home' },
-    { id: 'about', label: 'About' },
-    { id: 'skills', label: 'Skills' },
-    { id: 'projects', label: 'Projects' },
-    { id: 'contact', label: 'Contact' },
-  ];
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);
@@ -46,115 +33,123 @@ const Navigation = ({ activeSection, profileSrc, profileAlt = 'Profile' }: Navig
 
   return (
     <>
-      {/* NAVIGATION BAR */}
-      <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          isScrolled ? 'bg-black backdrop-blur-sm shadow-lg' : 'bg-transparent'
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? 'bg-bg-primary/80 backdrop-blur-xl border-b border-border/50'
+            : 'bg-transparent'
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="section-container">
           <div className="flex items-center justify-between h-16">
-            <div className="flex-shrink-0">
-              {/* Profile Image Button */}
-              <button
-                onClick={() => setIsImageOpen(true)}
-                aria-label="Open profile picture"
-              >
-                {profileSrc && (
-                  <img
-                    src={profileSrc}
-                    alt={profileAlt}
-                    className="w-8 h-8 md:w-10 md:h-10 rounded-full object-cover ring-2 ring-transparent hover:ring-primary-400 transition-all duration-200 cursor-pointer"
-                  />
-                )}
-              </button>
-            </div>
+            {/* Logo / Name */}
+            <button
+              onClick={() => scrollToSection('home')}
+              className="text-text-primary font-semibold text-body tracking-tight hover:text-accent-mint transition-colors duration-300"
+              aria-label="Go to top"
+            >
+              HS<span className="text-accent-mint">.</span>
+            </button>
 
-            {/* Desktop Menu */}
-            <div className="hidden md:block">
-              <div className="ml-10 flex items-baseline space-x-4">
-                {navItems.map((item) => (
+            {/* Desktop Nav — Floating pill */}
+            <div className="hidden md:flex items-center">
+              <div className={`flex items-center gap-1 px-1.5 py-1.5 rounded-full transition-all duration-500 ${
+                isScrolled ? 'bg-bg-surface/80 border border-border/50' : ''
+              }`}>
+                {NAV_ITEMS.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-300 ${
+                    className={`relative px-3.5 py-1.5 text-caption font-medium rounded-full transition-all duration-300 ${
                       activeSection === item.id
-                        ? 'text-primary-400 bg-slate-800'
-                        : 'text-gray-400 hover:text-primary-400 hover:bg-slate-800/50'
+                        ? 'text-text-primary'
+                        : 'text-text-muted hover:text-text-secondary'
                     }`}
                   >
-                    {item.label}
+                    {activeSection === item.id && (
+                      <motion.div
+                        layoutId="activeSection"
+                        className="absolute inset-0 bg-bg-elevated rounded-full border border-border"
+                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                      />
+                    )}
+                    <span className="relative z-10">{item.label}</span>
                   </button>
                 ))}
               </div>
             </div>
 
-            {/* Mobile Menu icon */}
-            <div className="md:hidden">
+            {/* Right side — Resume + Mobile toggle */}
+            <div className="flex items-center gap-3">
+              <a
+                href={PERSONAL.resumeUrl}
+                download
+                className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-text-secondary hover:text-text-primary border border-border hover:border-border-hover rounded-lg transition-all duration-300"
+              >
+                <Download size={14} />
+                Resume
+              </a>
+
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="text-gray-400 hover:text-primary-400 transition-colors"
+                className="md:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
+                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
               >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
               </button>
             </div>
           </div>
         </div>
+      </motion.nav>
 
-        {/* Mobile Menu */}
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
         {isMobileMenuOpen && (
-          <div className="md:hidden bg-slate-900/95 backdrop-blur-sm">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-              {navItems.map((item) => (
-                <button
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 bg-bg-primary/95 backdrop-blur-xl md:hidden"
+          >
+            <div className="flex flex-col items-center justify-center h-full gap-2">
+              {NAV_ITEMS.map((item, index) => (
+                <motion.button
                   key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 10 }}
+                  transition={{ delay: index * 0.05, duration: 0.3 }}
                   onClick={() => scrollToSection(item.id)}
-                  className={`block w-full text-left px-3 py-2 rounded-md text-base font-medium transition-all duration-300 ${
+                  className={`px-6 py-3 text-heading-sm font-medium rounded-xl transition-colors duration-300 ${
                     activeSection === item.id
-                      ? 'text-primary-400 bg-slate-800'
-                      : 'text-gray-400 hover:text-primary-400 hover:bg-slate-800/50'
+                      ? 'text-accent-mint'
+                      : 'text-text-muted hover:text-text-primary'
                   }`}
                 >
                   {item.label}
-                </button>
+                </motion.button>
               ))}
+
+              <motion.a
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: 10 }}
+                transition={{ delay: NAV_ITEMS.length * 0.05, duration: 0.3 }}
+                href={PERSONAL.resumeUrl}
+                download
+                className="mt-4 inline-flex items-center gap-2 px-6 py-3 text-body font-medium text-accent-mint border border-accent/30 rounded-xl"
+              >
+                <Download size={16} />
+                Download Resume
+              </motion.a>
             </div>
-          </div>
+          </motion.div>
         )}
-      </nav>
-
-      {/* FULL SCREEN IMAGE VIEW (Instagram / WhatsApp style) */}
-      {isImageOpen && (
-        <div
-          className="fixed inset-0 z-[999] bg-black/80 backdrop-blur-md flex items-center justify-center animate-fadeIn"
-          onClick={() => setIsImageOpen(false)} // close on backdrop click
-        >
-          <img
-            src={profileSrc}
-            alt={profileAlt}
-            className="max-w-[90%] max-h-[90%] rounded-xl object-cover shadow-xl animate-scaleIn"
-          />
-        </div>
-      )}
-
-      {/* Animations */}
-      <style>{`
-        .animate-fadeIn {
-          animation: fadeIn 0.3s ease-out;
-        }
-        @keyframes fadeIn {
-          from { opacity: 0 }
-          to { opacity: 1 }
-        }
-
-        .animate-scaleIn {
-          animation: scaleIn 0.25s ease-out;
-        }
-        @keyframes scaleIn {
-          from { transform: scale(0.85); opacity: 0 }
-          to { transform: scale(1); opacity: 1 }
-        }
-      `}</style>
+      </AnimatePresence>
     </>
   );
 };
