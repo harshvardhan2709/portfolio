@@ -6,33 +6,34 @@ export interface SkillCategory {
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: 'Frontend',
+    title: 'Languages',
+    icon: 'terminal',
+    skills: ['JavaScript', 'TypeScript', 'Java', 'SQL'],
+  },
+  {
+    title: 'Frontend & Mobile',
     icon: 'layout',
-    skills: ['React', 'TypeScript', 'Tailwind CSS', 'HTML/CSS', 'Next.js'],
+    skills: ['React.js', 'React Native', 'HTML5', 'CSS3', 'Tailwind CSS', 'Material UI'],
   },
   {
-    title: 'Mobile',
-    icon: 'smartphone',
-    skills: ['React Native', 'Expo', 'AsyncStorage', 'Mobile UI/UX'],
-  },
-  {
-    title: 'Backend',
+    title: 'Backend & Web3',
     icon: 'server',
-    skills: ['Node.js', 'Express', 'REST APIs', 'Authentication'],
-  },
-  {
-    title: 'Blockchain',
-    icon: 'blocks',
-    skills: ['Solidity', 'ERC-1155', 'Ethers.js', 'Smart Contracts', 'Web3'],
+    skills: ['Node.js', 'Express.js', 'RESTful APIs', 'JWT Authentication', 'MVC Architecture', 'Solidity (ERC-1155)'],
   },
   {
     title: 'Databases',
     icon: 'database',
-    skills: ['MongoDB', 'SQL', 'Mongoose'],
+    skills: ['MySQL', 'MongoDB', 'Oracle', 'SQLite'],
   },
   {
-    title: 'Tools & DevOps',
-    icon: 'terminal',
-    skills: ['Git', 'GitHub', 'VS Code', 'Linux', 'Vite', 'npm'],
+    title: 'Tools & Platforms',
+    icon: 'smartphone',
+    skills: ['Git', 'GitHub', 'Postman', 'Expo', 'Hardhat', 'IPFS'],
+  },
+  {
+    title: 'Core Concepts',
+    icon: 'blocks',
+    skills: ['Object-Oriented Programming (OOP)', 'DBMS', 'Database Design', 'SDLC', 'Agile Methodology'],
   },
 ];
+

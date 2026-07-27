@@ -15,18 +15,36 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    title: 'Carbon Credit Tokenization',
-    subtitle: 'Blockchain · Smart Contracts · Web3',
-    problem: 'Carbon credit markets lack transparency and accessibility for smaller participants.',
-    solution: 'Building a tokenization platform using ERC-1155 smart contracts that enables fractional ownership and transparent trading of carbon credits on the blockchain.',
-    impact: 'Enabling verifiable, decentralized carbon credit trading with immutable audit trails.',
-    description: 'Architecting a blockchain-based platform for tokenizing carbon credits using the ERC-1155 multi-token standard. Integrating smart contract logic with a React frontend and Node.js backend for seamless Web3 interactions.',
-    tags: ['Solidity', 'ERC-1155', 'React', 'Node.js', 'Ethers.js', 'Web3'],
+    title: 'Blockchain-Based Carbon Credit Tokenization Platform',
+    subtitle: 'Blockchain · Full-Stack · ERC-1155 · Web3',
+    problem: 'Traditional carbon markets lack verifiable ownership, transparent credit retirement, and protection against double counting.',
+    solution: 'Engineered a full-stack tokenization platform with 2 ERC-1155 smart contracts, IPFS metadata storage, 10+ REST APIs, and automated NFT certificate generation.',
+    impact: 'Enables end-to-end verifiable carbon credit ownership, retirement tracking, and QR-based public verification without double counting.',
+    description: 'A full-stack blockchain platform supporting 3 user roles and end-to-end carbon credit tokenization workflows. Engineered 2 ERC-1155 smart contracts for token issuance, transfer, and retirement with IPFS metadata storage and QR-based public verification.',
+    tags: ['React.js', 'TypeScript', 'Node.js', 'Express.js', 'MongoDB', 'Solidity', 'Hardhat', 'IPFS', 'JWT', 'Material UI'],
     features: [
-      'ERC-1155 multi-token smart contracts',
-      'Fractional carbon credit ownership',
-      'Blockchain-verified transaction history',
-      'Web3 wallet integration',
+      'Engineered 2 ERC-1155 smart contracts for token issuance, transfer, and retirement, preventing double counting',
+      'Developed a full-stack platform supporting 3 user roles and end-to-end carbon credit tokenization workflows',
+      'Implemented secure 10+ RESTful APIs and NoSQL database operations for complex business workflows',
+      'Integrated IPFS-based decentralized metadata storage, automated NFT certificate generation, and QR public verification',
+    ],
+    github: 'https://github.com/harshvardhan2709',
+    featured: true,
+    year: '2025 - 2026',
+  },
+  {
+    title: 'Cross-Platform Offline Music Player & Audio App',
+    subtitle: 'Mobile · React Native · AI · Local-First',
+    problem: 'Mobile music audio applications struggle with offline metadata performance, smart offline recommendations, and fast local file sharing.',
+    solution: 'Built a local-first React Native app with SQLite metadata indexing for 4000+ songs, Groq API (Llama 3.3 70B) AI genre classification, and TCP socket P2P file transfer.',
+    impact: 'Delivered zero-latency offline playback, AI playlist auto-generation with local caching fallback, and high-speed offline peer-to-peer song transfer.',
+    description: 'A local-first cross-platform music player supporting offline playback and playlist management for 2000+ song libraries, indexed SQLite metadata storage for 4000+ songs, AI playlist generation via Llama 3.3 70B (Groq API), and TCP socket P2P transfer.',
+    tags: ['React Native', 'Expo', 'TypeScript', 'SQLite', 'NativeWind', 'Groq API', 'Llama 3.3', 'TCP Sockets'],
+    features: [
+      'Local-first music player supporting offline playback, playlist management, and indexing for 2000+ song libraries',
+      'SQLite-based metadata management system with indexed storage and optimized query execution for 4000+ songs',
+      'Integrated AI genre classification using Llama 3.3 70B model (Groq API) for automated playlist generation with offline fallback',
+      'Built a peer-to-peer music sharing system using TCP sockets and QR-based device pairing for high-speed offline transfer',
     ],
     github: 'https://github.com/harshvardhan2709',
     featured: true,
@@ -85,3 +103,4 @@ export const PROJECTS: Project[] = [
     year: '2024',
   },
 ];
+

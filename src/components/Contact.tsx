@@ -1,4 +1,4 @@
-import { Mail, MapPin, Send, ArrowUpRight } from 'lucide-react';
+import { Mail, MapPin, Send, ArrowUpRight, Phone } from 'lucide-react';
 import { useState } from 'react';
 import { SectionHeading } from './ui/SectionHeading';
 import { AnimatedSection } from './ui/AnimatedSection';
@@ -33,7 +33,7 @@ const Contact = () => {
         <SectionHeading
           label="Contact"
           title="Get in Touch"
-          description="Open to full-time roles, internships, and freelance collaborations. Let's build something great."
+          description="Open to full-time roles, software engineering opportunities, and project collaborations. Let's connect."
         />
 
         <div className="grid lg:grid-cols-2 gap-16">
@@ -41,15 +41,15 @@ const Contact = () => {
           <AnimatedSection delay={0.1}>
             <div className="space-y-8">
               <p className="text-body-lg text-text-secondary leading-relaxed">
-                I'm always interested in hearing about new opportunities and interesting projects.
-                Whether you have a question, a proposal, or just want to connect — my inbox is open.
+                I'm always interested in hearing about new opportunities and engineering challenges.
+                Whether you have a role, a question, or a project in mind — feel free to reach out.
               </p>
 
               {/* Contact details */}
               <div className="space-y-5">
                 <a
                   href={SOCIAL.email}
-                  className="group flex items-start gap-4 p-4 rounded-xl hover:bg-bg-surface transition-colors duration-300"
+                  className="group flex items-start gap-4 p-4 rounded-xl hover:bg-bg-surface transition-colors duration-300 border border-transparent hover:border-border"
                 >
                   <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint">
                     <Mail size={18} />
@@ -60,6 +60,27 @@ const Contact = () => {
                     </h4>
                     <span className="text-caption text-text-muted group-hover:text-accent-mint transition-colors duration-300">
                       {PERSONAL.email}
+                    </span>
+                  </div>
+                  <ArrowUpRight
+                    size={14}
+                    className="ml-auto text-text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  />
+                </a>
+
+                <a
+                  href={SOCIAL.phone}
+                  className="group flex items-start gap-4 p-4 rounded-xl hover:bg-bg-surface transition-colors duration-300 border border-transparent hover:border-border"
+                >
+                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint">
+                    <Phone size={18} />
+                  </div>
+                  <div>
+                    <h4 className="text-caption font-medium text-text-primary mb-0.5">
+                      Phone
+                    </h4>
+                    <span className="text-caption text-text-muted group-hover:text-accent-mint transition-colors duration-300">
+                      {PERSONAL.phone}
                     </span>
                   </div>
                   <ArrowUpRight
@@ -82,6 +103,7 @@ const Contact = () => {
                   </div>
                 </div>
               </div>
+
 
               {/* Availability */}
               <div className="flex items-center gap-2 text-caption text-text-muted">
