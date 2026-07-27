@@ -1,28 +1,37 @@
-/** @type {import('tailwindcss').Config} */
+function withOpacity(variableName) {
+  return ({ opacityValue }) => {
+    if (opacityValue !== undefined) {
+      return `rgb(var(${variableName}) / ${opacityValue})`;
+    }
+    return `rgb(var(${variableName}))`;
+  };
+}
+
 export default {
+  darkMode: 'class',
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
         bg: {
-          primary: '#0a0a0a',
-          surface: '#141414',
-          elevated: '#1a1a1a',
+          primary: withOpacity('--bg-primary'),
+          surface: withOpacity('--bg-surface'),
+          elevated: withOpacity('--bg-elevated'),
         },
         border: {
-          DEFAULT: '#262626',
-          hover: '#3a3a3a',
+          DEFAULT: withOpacity('--border-default'),
+          hover: withOpacity('--border-hover'),
         },
         text: {
-          primary: '#fafafa',
-          secondary: '#a1a1a1',
-          muted: '#6b6b6b',
+          primary: withOpacity('--text-primary'),
+          secondary: withOpacity('--text-secondary'),
+          muted: withOpacity('--text-muted'),
         },
         accent: {
-          DEFAULT: '#2d6a4f',
-          light: '#40916c',
-          mint: '#95d5b2',
-          glow: 'rgba(45, 106, 79, 0.15)',
+          DEFAULT: withOpacity('--accent-default'),
+          light: withOpacity('--accent-light'),
+          mint: withOpacity('--accent-mint'),
+          glow: withOpacity('--accent-glow'),
         },
       },
       fontFamily: {

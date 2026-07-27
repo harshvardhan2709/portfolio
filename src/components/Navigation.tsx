@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X, Download, Sun, Moon } from 'lucide-react';
 import { NAV_ITEMS, PERSONAL } from '../data/constants';
+import { useTheme } from '../context/ThemeContext';
 
 interface NavigationProps {
   activeSection: string;
@@ -10,6 +11,7 @@ interface NavigationProps {
 const Navigation = ({ activeSection }: NavigationProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 50);
@@ -82,12 +84,35 @@ const Navigation = ({ activeSection }: NavigationProps) => {
               </div>
             </div>
 
-            {/* Right side — Resume + Mobile toggle */}
+            {/* Right side — Theme toggle + Resume + Mobile menu button */}
             <div className="flex items-center gap-3">
+              {/* Theme Toggle Button */}
+              <button
+                onClick={toggleTheme}
+                className="p-2 rounded-lg border border-border hover:border-border-hover bg-bg-surface text-text-muted hover:text-text-primary transition-all duration-300 flex items-center justify-center"
+                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              >
+                <motion.div
+                  key={theme}
+                  initial={{ scale: 0.5, rotate: -90, opacity: 0 }}
+                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  {theme === 'dark' ? (
+                    <Sun size={18} className="text-amber-400" />
+                  ) : (
+                    <Moon size={18} className="text-indigo-600" />
+                  )}
+                </motion.div>
+              </button>
+
               <a
                 href={PERSONAL.resumeUrl}
-                download
-                className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-text-secondary hover:text-text-primary border border-border hover:border-border-hover rounded-lg transition-all duration-300"
+                download="HARSHVARDHAN_SAWANT.pdf"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-text-secondary hover:text-text-primary border border-border hover:border-border-hover rounded-lg transition-all duration-300 bg-bg-surface"
               >
                 <Download size={14} />
                 Resume
@@ -134,18 +159,39 @@ const Navigation = ({ activeSection }: NavigationProps) => {
                 </motion.button>
               ))}
 
-              <motion.a
+              <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: 10 }}
                 transition={{ delay: NAV_ITEMS.length * 0.05, duration: 0.3 }}
-                href={PERSONAL.resumeUrl}
-                download
-                className="mt-4 inline-flex items-center gap-2 px-6 py-3 text-body font-medium text-accent-mint border border-accent/30 rounded-xl"
+                className="flex items-center gap-4 mt-6"
               >
-                <Download size={16} />
-                Download Resume
-              </motion.a>
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center gap-2 px-5 py-3 text-body font-medium text-text-primary border border-border rounded-xl bg-bg-surface"
+                >
+                  {theme === 'dark' ? (
+                    <>
+                      <Sun size={18} className="text-amber-400" /> Light Mode
+                    </>
+                  ) : (
+                    <>
+                      <Moon size={18} className="text-indigo-600" /> Dark Mode
+                    </>
+                  )}
+                </button>
+
+                <a
+                  href={PERSONAL.resumeUrl}
+                  download="HARSHVARDHAN_SAWANT.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 px-5 py-3 text-body font-medium text-accent-mint border border-accent/30 rounded-xl bg-bg-surface"
+                >
+                  <Download size={16} />
+                  Resume
+                </a>
+              </motion.div>
             </div>
           </motion.div>
         )}

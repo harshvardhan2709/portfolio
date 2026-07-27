@@ -39,20 +39,20 @@ const Hero = () => {
         variants={stagger}
         initial="hidden"
         animate="visible"
-        className="section-container relative z-10 py-32"
+        className="section-container relative z-10 py-24 sm:py-32"
       >
         {/* Availability badge */}
-        <motion.div variants={fadeUp} className="mb-8">
+        <motion.div variants={fadeUp} className="mb-6 sm:mb-8">
           <span className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-bg-surface border border-border rounded-full text-caption text-text-muted">
-            <span className="w-2 h-2 bg-accent-mint rounded-full animate-pulse-slow" />
-            {PERSONAL.availability}
+            <span className="w-2 h-2 bg-accent-mint rounded-full animate-pulse-slow flex-shrink-0" />
+            <span className="truncate">{PERSONAL.availability}</span>
           </span>
         </motion.div>
 
         {/* Name */}
         <motion.h1
           variants={fadeUp}
-          className="text-display-sm md:text-display text-text-primary font-bold mb-4"
+          className="text-4xl sm:text-display-sm md:text-display text-text-primary font-bold mb-3 sm:mb-4 tracking-tight"
         >
           {PERSONAL.name}
         </motion.h1>
@@ -60,7 +60,7 @@ const Hero = () => {
         {/* Headline */}
         <motion.p
           variants={fadeUp}
-          className="text-heading-sm md:text-heading text-text-muted mb-6"
+          className="text-xl sm:text-heading-sm md:text-heading text-text-muted mb-4 sm:mb-6 leading-snug"
         >
           {PERSONAL.headline}
         </motion.p>
@@ -68,7 +68,7 @@ const Hero = () => {
         {/* Tagline */}
         <motion.p
           variants={fadeUp}
-          className="text-body-lg text-text-secondary max-w-xl mb-4 leading-relaxed"
+          className="text-body sm:text-body-lg text-text-secondary max-w-xl mb-4 leading-relaxed"
         >
           {PERSONAL.tagline}
         </motion.p>
@@ -76,14 +76,14 @@ const Hero = () => {
         {/* Current focus */}
         <motion.p
           variants={fadeUp}
-          className="text-caption text-text-muted mb-10 font-mono"
+          className="text-caption text-text-muted mb-8 sm:mb-10 font-mono leading-relaxed"
         >
           Currently building:{' '}
-          <span className="text-accent-mint">{PERSONAL.currentFocus}</span>
+          <span className="text-accent-mint font-medium">{PERSONAL.currentFocus}</span>
         </motion.p>
 
         {/* CTAs */}
-        <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-4 mb-12">
+        <motion.div variants={fadeUp} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 mb-10 sm:mb-12">
           <Button
             variant="primary"
             href="#projects"
@@ -102,29 +102,31 @@ const Hero = () => {
         </motion.div>
 
         {/* Social links */}
-        <motion.div variants={fadeUp} className="flex items-center gap-4">
-          {[
-            { href: SOCIAL.github, icon: Github, label: 'GitHub' },
-            { href: SOCIAL.linkedin, icon: Linkedin, label: 'LinkedIn' },
-            { href: SOCIAL.email, icon: Mail, label: 'Email' },
-          ].map(({ href, icon: Icon, label }) => (
-            <a
-              key={label}
-              href={href}
-              target={label !== 'Email' ? '_blank' : undefined}
-              rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
-              className="group p-3 rounded-lg border border-border hover:border-border-hover hover:bg-bg-elevated transition-all duration-300"
-              aria-label={label}
-            >
-              <Icon
-                size={18}
-                className="text-text-muted group-hover:text-accent-mint transition-colors duration-300"
-              />
-            </a>
-          ))}
+        <motion.div variants={fadeUp} className="flex flex-wrap items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-3">
+            {[
+              { href: SOCIAL.github, icon: Github, label: 'GitHub' },
+              { href: SOCIAL.linkedin, icon: Linkedin, label: 'LinkedIn' },
+              { href: SOCIAL.email, icon: Mail, label: 'Email' },
+            ].map(({ href, icon: Icon, label }) => (
+              <a
+                key={label}
+                href={href}
+                target={label !== 'Email' ? '_blank' : undefined}
+                rel={label !== 'Email' ? 'noopener noreferrer' : undefined}
+                className="group p-2.5 sm:p-3 rounded-lg border border-border hover:border-border-hover hover:bg-bg-elevated transition-all duration-300 bg-bg-surface"
+                aria-label={label}
+              >
+                <Icon
+                  size={18}
+                  className="text-text-muted group-hover:text-accent-mint transition-colors duration-300"
+                />
+              </a>
+            ))}
+          </div>
 
-          <span className="h-6 w-px bg-border ml-2" />
-          <span className="text-caption text-text-muted">{PERSONAL.location}</span>
+          <span className="hidden sm:inline-block h-6 w-px bg-border mx-1" />
+          <span className="text-caption text-text-muted w-full sm:w-auto">{PERSONAL.location}</span>
         </motion.div>
       </motion.div>
     </section>

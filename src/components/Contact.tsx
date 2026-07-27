@@ -28,7 +28,7 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative py-32 border-t border-border/30">
+    <section id="contact" className="relative py-20 sm:py-32 border-t border-border/30">
       <div className="section-container">
         <SectionHeading
           label="Contact"
@@ -36,61 +36,61 @@ const Contact = () => {
           description="Open to full-time roles, software engineering opportunities, and project collaborations. Let's connect."
         />
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
           {/* Left side — Info */}
           <AnimatedSection delay={0.1}>
-            <div className="space-y-8">
-              <p className="text-body-lg text-text-secondary leading-relaxed">
+            <div className="space-y-6 sm:space-y-8">
+              <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed">
                 I'm always interested in hearing about new opportunities and engineering challenges.
                 Whether you have a role, a question, or a project in mind — feel free to reach out.
               </p>
 
               {/* Contact details */}
-              <div className="space-y-5">
+              <div className="space-y-3 sm:space-y-5">
                 <a
                   href={SOCIAL.email}
-                  className="group flex items-start gap-4 p-4 rounded-xl hover:bg-bg-surface transition-colors duration-300 border border-transparent hover:border-border"
+                  className="group flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-bg-surface transition-colors duration-300 border border-transparent hover:border-border bg-bg-surface/50"
                 >
-                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint">
+                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint flex-shrink-0">
                     <Mail size={18} />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <h4 className="text-caption font-medium text-text-primary mb-0.5">
                       Email
                     </h4>
-                    <span className="text-caption text-text-muted group-hover:text-accent-mint transition-colors duration-300">
+                    <span className="text-caption text-text-muted group-hover:text-accent-mint transition-colors duration-300 block truncate">
                       {PERSONAL.email}
                     </span>
                   </div>
                   <ArrowUpRight
                     size={14}
-                    className="ml-auto text-text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="ml-auto text-text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0"
                   />
                 </a>
 
                 <a
                   href={SOCIAL.phone}
-                  className="group flex items-start gap-4 p-4 rounded-xl hover:bg-bg-surface transition-colors duration-300 border border-transparent hover:border-border"
+                  className="group flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-bg-surface transition-colors duration-300 border border-transparent hover:border-border bg-bg-surface/50"
                 >
-                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint">
+                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint flex-shrink-0">
                     <Phone size={18} />
                   </div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <h4 className="text-caption font-medium text-text-primary mb-0.5">
                       Phone
                     </h4>
-                    <span className="text-caption text-text-muted group-hover:text-accent-mint transition-colors duration-300">
+                    <span className="text-caption text-text-muted group-hover:text-accent-mint transition-colors duration-300 block truncate">
                       {PERSONAL.phone}
                     </span>
                   </div>
                   <ArrowUpRight
                     size={14}
-                    className="ml-auto text-text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="ml-auto text-text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0"
                   />
                 </a>
 
-                <div className="flex items-start gap-4 p-4">
-                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint">
+                <div className="flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 bg-bg-surface/50 rounded-xl">
+                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint flex-shrink-0">
                     <MapPin size={18} />
                   </div>
                   <div>
@@ -104,18 +104,17 @@ const Contact = () => {
                 </div>
               </div>
 
-
               {/* Availability */}
               <div className="flex items-center gap-2 text-caption text-text-muted">
-                <span className="w-2 h-2 bg-accent-mint rounded-full animate-pulse-slow" />
-                {PERSONAL.availability}
+                <span className="w-2 h-2 bg-accent-mint rounded-full animate-pulse-slow flex-shrink-0" />
+                <span>{PERSONAL.availability}</span>
               </div>
             </div>
           </AnimatedSection>
 
           {/* Right side — Form */}
           <AnimatedSection delay={0.2} direction="right">
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
               <div>
                 <label
                   htmlFor="contact-name"
@@ -167,7 +166,7 @@ const Contact = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
+                  rows={4}
                   className="w-full px-4 py-3 bg-bg-surface border border-border rounded-lg text-text-primary text-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300 resize-none"
                   placeholder="Tell me about your project or opportunity..."
                 />

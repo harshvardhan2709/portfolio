@@ -19,7 +19,7 @@ const Skills = () => {
   const [ref, isInView] = useInView<HTMLDivElement>();
 
   return (
-    <section id="skills" className="relative py-32 border-t border-border/30">
+    <section id="skills" className="relative py-20 sm:py-32 border-t border-border/30">
       <div className="section-container">
         <SectionHeading
           label="Skills"
@@ -27,7 +27,7 @@ const Skills = () => {
           description="Technologies and tools I work with across frontend, backend, mobile, and blockchain."
         />
 
-        <div ref={ref} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div ref={ref} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {SKILL_CATEGORIES.map((category, index) => (
             <motion.div
               key={category.title}
@@ -38,7 +38,7 @@ const Skills = () => {
                 delay: index * 0.08,
                 ease: 'easeOut',
               }}
-              className="group p-6 bg-bg-surface rounded-xl border border-border hover:border-border-hover transition-all duration-300"
+              className="group p-5 sm:p-6 bg-bg-surface rounded-xl border border-border hover:border-border-hover transition-all duration-300"
             >
               {/* Icon + Title */}
               <div className="flex items-center gap-3 mb-5">

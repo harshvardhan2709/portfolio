@@ -15,20 +15,19 @@ function FeaturedProject({ project }: { project: Project }) {
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="group relative p-8 md:p-10 bg-bg-surface rounded-2xl border border-border hover:border-accent/30 transition-all duration-500 hover:shadow-glow mb-12"
+      className="group relative p-5 sm:p-8 md:p-10 bg-bg-surface rounded-2xl border border-border hover:border-accent/30 transition-all duration-500 hover:shadow-glow mb-8 sm:mb-12"
     >
       {/* Featured label */}
-      <div className="flex items-center gap-3 mb-6">
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
         <span className="text-label uppercase tracking-widest text-accent-mint font-mono">
           Featured Project
         </span>
-        <span className="h-px flex-1 bg-border" />
         <span className="text-caption text-text-muted font-mono">{project.year}</span>
       </div>
 
-      <div className="grid lg:grid-cols-2 gap-8">
+      <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
         <div>
-          <h3 className="text-heading text-text-primary mb-2 group-hover:text-accent-mint transition-colors duration-300">
+          <h3 className="text-heading-sm sm:text-heading text-text-primary mb-2 group-hover:text-accent-mint transition-colors duration-300">
             {project.title}
           </h3>
           <p className="text-caption text-text-muted font-mono mb-6">
@@ -40,19 +39,19 @@ function FeaturedProject({ project }: { project: Project }) {
               <span className="text-label uppercase tracking-widest text-text-muted block mb-1">
                 Problem
               </span>
-              <p className="text-body text-text-secondary">{project.problem}</p>
+              <p className="text-caption sm:text-body text-text-secondary">{project.problem}</p>
             </div>
             <div>
               <span className="text-label uppercase tracking-widest text-text-muted block mb-1">
                 Solution
               </span>
-              <p className="text-body text-text-secondary">{project.solution}</p>
+              <p className="text-caption sm:text-body text-text-secondary">{project.solution}</p>
             </div>
             <div>
               <span className="text-label uppercase tracking-widest text-text-muted block mb-1">
                 Impact
               </span>
-              <p className="text-body text-text-secondary">{project.impact}</p>
+              <p className="text-caption sm:text-body text-text-secondary">{project.impact}</p>
             </div>
           </div>
         </div>
@@ -67,29 +66,29 @@ function FeaturedProject({ project }: { project: Project }) {
               {project.features.map((feature, i) => (
                 <li
                   key={i}
-                  className="flex items-start gap-3 text-caption text-text-secondary"
+                  className="flex items-start gap-2.5 sm:gap-3 text-caption text-text-secondary"
                 >
-                  <span className="w-1 h-1 rounded-full bg-accent-mint mt-2 flex-shrink-0" />
-                  {feature}
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-mint mt-1.5 flex-shrink-0" />
+                  <span>{feature}</span>
                 </li>
               ))}
             </ul>
           </div>
 
           {/* Tags */}
-          <div className="flex flex-wrap gap-2 mb-6">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
             {project.tags.map((tag) => (
               <Badge key={tag} variant="accent">{tag}</Badge>
             ))}
           </div>
 
           {/* Links */}
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
             <a
               href={project.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-text-secondary hover:text-text-primary border border-border hover:border-border-hover rounded-lg transition-all duration-300"
+              className="inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-text-secondary hover:text-text-primary border border-border hover:border-border-hover rounded-lg transition-all duration-300 bg-bg-elevated"
             >
               <Github size={14} />
               Source Code
@@ -99,7 +98,7 @@ function FeaturedProject({ project }: { project: Project }) {
                 href={project.demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-accent-mint hover:text-accent-mint/80 border border-accent/20 hover:border-accent/40 rounded-lg transition-all duration-300"
+                className="inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-accent-mint hover:text-accent-mint/80 border border-accent/20 hover:border-accent/40 rounded-lg transition-all duration-300 bg-bg-elevated"
               >
                 <ExternalLink size={14} />
                 Live Demo
@@ -122,19 +121,19 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       initial={{ opacity: 0, y: 20 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
-      className="group relative p-6 bg-bg-surface rounded-xl border border-border hover:border-border-hover transition-all duration-300 hover:shadow-card-hover flex flex-col"
+      className="group relative p-5 sm:p-6 bg-bg-surface rounded-xl border border-border hover:border-border-hover transition-all duration-300 hover:shadow-card-hover flex flex-col"
     >
       {/* Header */}
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-2 mb-4">
         <div className="flex-1">
-          <h3 className="text-heading-sm text-text-primary group-hover:text-accent-mint transition-colors duration-300">
+          <h3 className="text-body-lg sm:text-heading-sm font-bold text-text-primary group-hover:text-accent-mint transition-colors duration-300">
             {project.title}
           </h3>
           <p className="text-caption text-text-muted font-mono mt-1">
             {project.subtitle}
           </p>
         </div>
-        <span className="text-caption text-text-muted font-mono">{project.year}</span>
+        <span className="text-caption text-text-muted font-mono self-start sm:self-auto">{project.year}</span>
       </div>
 
       {/* Description */}
@@ -146,8 +145,8 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       <ul className="space-y-1.5 mb-5">
         {project.features.slice(0, 3).map((feature, i) => (
           <li key={i} className="flex items-start gap-2 text-caption text-text-muted">
-            <span className="w-1 h-1 rounded-full bg-accent/60 mt-2 flex-shrink-0" />
-            {feature}
+            <span className="w-1.5 h-1.5 rounded-full bg-accent/60 mt-1.5 flex-shrink-0" />
+            <span>{feature}</span>
           </li>
         ))}
       </ul>
@@ -196,7 +195,7 @@ const Projects = () => {
   const regular = PROJECTS.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="relative py-32 border-t border-border/30">
+    <section id="projects" className="relative py-20 sm:py-32 border-t border-border/30">
       <div className="section-container">
         <SectionHeading
           label="Projects"
@@ -210,7 +209,7 @@ const Projects = () => {
         ))}
 
         {/* Project grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {regular.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}

@@ -17,7 +17,7 @@ const Education = () => {
   ];
 
   return (
-    <section id="education" className="relative py-32 border-t border-border/30">
+    <section id="education" className="relative py-20 sm:py-32 border-t border-border/30">
       <div className="section-container">
         <SectionHeading
           label="Education & Achievements"
@@ -25,26 +25,26 @@ const Education = () => {
           description="Academic background in Information Technology alongside technical achievements and certifications."
         />
 
-        <div className="grid lg:grid-cols-2 gap-8">
+        <div className="grid lg:grid-cols-2 gap-6 sm:gap-8">
           {/* Education Card */}
           <AnimatedSection delay={0.1}>
-            <div className="p-8 bg-bg-surface rounded-xl border border-border h-full flex flex-col justify-between">
+            <div className="p-5 sm:p-8 bg-bg-surface rounded-xl border border-border h-full flex flex-col justify-between">
               <div>
-                <div className="flex items-start gap-5 mb-6">
+                <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-5 mb-6">
                   <div className="p-3 rounded-xl bg-accent-glow text-accent-mint flex-shrink-0">
                     <GraduationCap size={24} />
                   </div>
 
-                  <div className="flex-1">
-                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 mb-2">
-                      <h3 className="text-heading-sm text-text-primary">
+                  <div className="flex-1 w-full">
+                    <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 sm:gap-2 mb-2">
+                      <h3 className="text-body-lg sm:text-heading-sm font-bold text-text-primary">
                         B.E. Information Technology
                       </h3>
                       <span className="text-caption text-text-muted font-mono">
                         Oct 2022 — July 2026
                       </span>
                     </div>
-                    <p className="text-body text-accent-mint font-medium mb-1">
+                    <p className="text-caption sm:text-body text-accent-mint font-medium mb-1">
                       Marathwada Mitra Mandal's College of Engineering (MMCOE), Pune
                     </p>
                     <p className="text-caption text-text-secondary font-mono">
@@ -53,16 +53,16 @@ const Education = () => {
                   </div>
                 </div>
 
-                <p className="text-body text-text-secondary leading-relaxed mb-6">
+                <p className="text-caption sm:text-body text-text-secondary leading-relaxed mb-6">
                   Undergraduate pursuing Information Technology with a focus on scalable full-stack web & mobile development, REST API architecture, and blockchain engineering.
                 </p>
               </div>
 
-              <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+              <div className="flex flex-wrap gap-1.5 sm:gap-2 pt-4 border-t border-border/50">
                 {['Data Structures', 'DBMS', 'OOP', 'SDLC', 'Database Design', 'Agile', 'Web Engineering'].map((course) => (
                   <span
                     key={course}
-                    className="px-3 py-1 text-caption font-mono text-text-muted bg-bg-elevated rounded-full border border-border"
+                    className="px-2.5 sm:px-3 py-1 text-caption font-mono text-text-muted bg-bg-elevated rounded-full border border-border"
                   >
                     {course}
                   </span>
@@ -73,21 +73,21 @@ const Education = () => {
 
           {/* Achievements & Certifications */}
           <AnimatedSection delay={0.2} direction="right">
-            <div className="p-8 bg-bg-surface rounded-xl border border-border h-full flex flex-col justify-between">
+            <div className="p-5 sm:p-8 bg-bg-surface rounded-xl border border-border h-full flex flex-col justify-between">
               <div>
                 <div className="flex items-center gap-3 mb-6">
                   <div className="p-3 rounded-xl bg-accent-glow text-accent-mint flex-shrink-0">
                     <Award size={24} />
                   </div>
-                  <h3 className="text-heading-sm text-text-primary">
+                  <h3 className="text-body-lg sm:text-heading-sm font-bold text-text-primary">
                     Achievements & Certifications
                   </h3>
                 </div>
 
-                <div className="space-y-6">
+                <div className="space-y-4 sm:space-y-6">
                   {achievements.map((item, index) => (
                     <div key={index} className="p-4 bg-bg-elevated rounded-lg border border-border/70 hover:border-border-hover transition-colors">
-                      <div className="flex items-start justify-between gap-2 mb-1">
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-2 mb-1">
                         <h4 className="text-body font-medium text-text-primary">
                           {item.title}
                         </h4>
@@ -96,7 +96,7 @@ const Education = () => {
                             href={item.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-accent-mint hover:underline inline-flex items-center gap-1 text-caption font-mono"
+                            className="text-accent-mint hover:underline inline-flex items-center gap-1 text-caption font-mono shrink-0"
                           >
                             Link <ExternalLink size={12} />
                           </a>
