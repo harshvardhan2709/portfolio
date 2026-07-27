@@ -8,6 +8,8 @@ interface ButtonProps {
   icon?: ReactNode;
   className?: string;
   external?: boolean;
+  download?: boolean | string;
+  target?: string;
 }
 
 export function Button({
@@ -18,6 +20,8 @@ export function Button({
   icon,
   className = '',
   external = false,
+  download,
+  target,
 }: ButtonProps) {
   const variants = {
     primary:
@@ -31,11 +35,14 @@ export function Button({
   const baseStyles = `inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg text-caption font-medium transition-all duration-300 ${variants[variant]} ${className}`;
 
   if (href) {
+    const isExternal = external || target === '_blank';
     return (
       <a
         href={href}
         className={baseStyles}
-        {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
+        download={download}
+        target={target || (external ? '_blank' : undefined)}
+        rel={isExternal ? 'noopener noreferrer' : undefined}
       >
         {children}
         {icon && <span className="flex-shrink-0">{icon}</span>}

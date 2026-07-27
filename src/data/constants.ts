@@ -8,7 +8,7 @@ export const PERSONAL = {
   phone: '+91 9322758958',
   location: 'Pune, Maharashtra, India',
   availability: 'Open to full-time roles & engineering opportunities',
-  resumeUrl: '/HARSHVARDHAN_SAWANT_6.pdf',
+  resumeUrl: '/HARSHVARDHAN_SAWANT.pdf',
   currentFocus: 'Full-stack Web & Mobile Applications and Blockchain Credit Tokenization',
 } as const;
 

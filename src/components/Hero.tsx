@@ -94,7 +94,8 @@ const Hero = () => {
           <Button
             variant="secondary"
             href={PERSONAL.resumeUrl}
-            external={false}
+            download="HARSHVARDHAN_SAWANT.pdf"
+            target="_blank"
           >
             Download Resume
           </Button>
