@@ -11,9 +11,9 @@ export interface Experience {
 export const EXPERIENCES: Experience[] = [
   {
     company: 'Climekare Sustainability Private Limited',
-    role: 'Full Stack Developer',
+    role: 'Full Stack Developer Intern',
     period: 'Aug 2025 — Mar 2026',
-    type: 'fulltime',
+    type: 'internship',
     description: 'Engineered a scalable full-stack web application using React.js, Node.js, Express.js, and MongoDB supporting 3 user roles, 10+ REST APIs, and end-to-end carbon credit tokenization workflows.',
     achievements: [
       'Engineered a scalable full-stack web application using React.js, Node.js, Express.js, and MongoDB supporting 3 user roles, 10+ REST APIs, and end-to-end carbon credit tokenization workflows.',
@@ -21,20 +21,20 @@ export const EXPERIENCES: Experience[] = [
       'Designed MongoDB database schemas and optimized queries, reducing query execution time and improving application performance by 30%.',
       'Led frontend-backend integration to deliver scalable production-ready software solutions, ensuring seamless API communication and reliable feature delivery.',
     ],
-    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'REST APIs', 'JWT', 'Solidity', 'ERC-1155'],
+    technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'RESTful APIs', 'JWT Authentication', 'Solidity', 'ERC-1155', 'Role-Based Authorization'],
   },
   {
     company: 'Athena Automation',
-    role: 'Front-end Developer',
+    role: 'Front-end Developer Intern',
     period: 'Feb 2024 — Aug 2024',
-    type: 'contract',
+    type: 'internship',
     description: 'Built a responsive cross-platform mobile application frontend using React Native with role-based access control, reusable UI components, and a shared architecture that reduced development time by 40%.',
     achievements: [
       'Built a responsive cross-platform mobile application frontend using React Native with role-based access control, reusable UI components, and a shared architecture that reduced development time by 40%.',
       'Developed and integrated application features within a 3-member development team, taking ownership of the React Native frontend and delivering scheduled releases on time.',
       'Reduced development time by +40% by architecting a reusable component library, implementing frontend best practices, and improving development efficiency across multiple application modules.',
     ],
-    technologies: ['React Native', 'TypeScript', 'JavaScript', 'REST APIs', 'Role-Based Access Control'],
+    technologies: ['React Native', 'TypeScript', 'JavaScript', 'REST APIs', 'Role-Based Access Control', 'UI Component Library'],
   },
 ];
 

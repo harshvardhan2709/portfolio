@@ -35,7 +35,7 @@ const About = () => {
 
             <AnimatedSection delay={0.3}>
               <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed">
-                My projects range from a <span className="text-text-primary font-medium">Blockchain-Based Carbon Credit Tokenization Platform</span> utilizing ERC-1155 smart contracts and IPFS decentralized storage, to a <span className="text-text-primary font-medium">Local-First AI Music Player</span> with SQLite indexing and Groq API (Llama 3.3 70B) playlist generation.
+                My projects range from a <span className="text-text-primary font-medium">Blockchain-Based Carbon Credit Tokenization and Carbon Off-Set Platform</span> utilizing ERC-1155 smart contracts and IPFS decentralized storage, to a <span className="text-text-primary font-medium">Cross-Platform Offline Music Player and Audio Application</span> with SQLite indexing and Groq API (Llama 3.3 70B) playlist generation.
               </p>
             </AnimatedSection>
 

@@ -13,12 +13,12 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: 'Frontend & Mobile',
     icon: 'layout',
-    skills: ['React.js', 'React Native', 'HTML5', 'CSS3', 'Tailwind CSS', 'Material UI'],
+    skills: ['React.js', 'React Native', 'NativeWind', 'Zustand', 'HTML5', 'CSS3', 'Tailwind CSS', 'Material UI'],
   },
   {
     title: 'Backend & Web3',
     icon: 'server',
-    skills: ['Node.js', 'Express.js', 'RESTful APIs', 'JWT Authentication', 'MVC Architecture', 'Solidity (ERC-1155)'],
+    skills: ['Node.js', 'Express.js', 'RESTful APIs', 'JWT Authentication', 'MVC Architecture', 'Java Backend Fundamentals', 'Solidity (ERC-1155)'],
   },
   {
     title: 'Databases',
