@@ -1,9 +1,11 @@
 // Personal information — single source of truth
 export const PERSONAL = {
   name: 'Harshvardhan Sawant',
+  fullName: 'Harshvardhan Uttam Sawant',
   firstName: 'Harshvardhan',
-  headline: 'Full Stack Developer & Software Engineer',
-  tagline: 'Building scalable web & mobile applications with React, React Native, Node.js, and Blockchain technology.',
+  headline: 'Software Engineer & Full Stack Developer',
+  tagline: 'Software Engineer with experience across full-stack web and cross-platform mobile development.',
+  summary: 'Software Engineer with experience across full-stack web and cross-platform mobile development. Built production applications using React.js, React Native, Node.js, Express.js, MongoDB, and REST APIs. Experience with JWT-based authentication, role-based authorization, database schema design, and query optimization. B.E. Information Technology, 2026.',
   email: 'sawantharsh2022@gmail.com',
   phone: '+91 9322758958',
   location: 'Pune, Maharashtra, India',

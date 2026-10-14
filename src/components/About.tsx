@@ -1,94 +1,97 @@
 import { SectionHeading } from './ui/SectionHeading';
 import { AnimatedSection } from './ui/AnimatedSection';
 
-const About = () => {
-  const stats = [
-    { value: '3+', label: 'Years Coding' },
-    { value: '2', label: 'Companies' },
-    { value: '5+', label: 'Projects Shipped' },
-    { value: '15+', label: 'Tech Stack' },
-  ];
+const HIGHLIGHTS = [
+  { label: 'Frontend & Mobile', value: 'React.js · React Native · TypeScript' },
+  { label: 'Backend', value: 'Node.js · Express.js · REST APIs · JWT / RBAC' },
+  { label: 'AI & GenAI', value: 'Groq · Llama 3.3 · LLM API Integration · Prompt Eng.' },
+  { label: 'Databases', value: 'MongoDB · MySQL · SQLite · Oracle' },
+  { label: 'Web3 & Blockchain', value: 'Solidity (ERC-1155) · Hardhat · IPFS' },
+];
 
+const STATS = [
+  { value: '12', label: 'Months interned' },
+  { value: '2', label: 'Companies' },
+  { value: '6', label: 'Projects shipped' },
+  { value: '15+', label: 'Technologies' },
+];
+
+const About = () => {
   return (
-    <section id="about" className="relative py-20 sm:py-32 border-t border-border/30">
+    <section id="about" className="relative py-24 sm:py-32">
       <div className="section-container">
         <SectionHeading
+          index="01"
           label="About"
-          title="Background"
-          description="Building scalable software — from full-stack web & mobile applications to blockchain smart contracts."
+          title="Engineering, end to end"
         />
 
-        <div className="grid lg:grid-cols-5 gap-10 lg:gap-16">
-          {/* Story */}
-          <div className="lg:col-span-3 space-y-4 sm:space-y-6">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          {/* Lead */}
+          <div className="lg:col-span-7">
             <AnimatedSection delay={0.1}>
-              <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed">
-                I am a Full Stack Developer and Software Engineer with experience building scalable web and mobile applications using React.js, React Native, Node.js, Express.js, MySQL, MongoDB, and REST APIs.
+              <p className="font-serif text-2xl sm:text-3xl leading-[1.4] text-text-primary mb-8">
+                I build scalable web and mobile applications — from{' '}
+                <span className="italic text-accent-mint">React interfaces</span> to{' '}
+                <span className="italic text-accent-mint">Node.js APIs</span>, databases, and{' '}
+                <span className="italic text-accent-mint">blockchain smart contracts</span>.
               </p>
             </AnimatedSection>
 
             <AnimatedSection delay={0.2}>
-              <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed">
-                Across software development roles — at <span className="text-text-primary font-medium">Climekare Sustainability Private Limited</span> and <span className="text-text-primary font-medium">Athena Automation</span> — I've engineered production full-stack Web & Mobile apps, architected secure JWT/RBAC authentication systems, optimized database queries by 30%, and reduced development timelines by 40%.
-              </p>
+              <div className="space-y-5 text-body text-text-secondary leading-relaxed max-w-2xl">
+                <p>
+                  I'm a Software Engineer with 12 months of internship experience across
+                  full-stack web and cross-platform mobile development, building production
+                  applications using React.js, React Native, Node.js, Express.js, MongoDB, and REST APIs.
+                </p>
+                <p>
+                  At{' '}
+                  <span className="text-text-primary">Climekare Sustainability</span> and{' '}
+                  <span className="text-text-primary">Athena Automation</span>, I engineered
+                  full-stack web and mobile apps, developed 10+ RESTful APIs with secure JWT/RBAC authentication,
+                  optimized database queries by 30%, and cut development timelines by 40%
+                  through a reusable component architecture.
+                </p>
+                <p>
+                  My work spans an end-to-end blockchain carbon-credit tokenization platform with ERC-1155
+                  smart contracts and IPFS storage, and a cross-platform offline music player with SQLite
+                  indexing, FlatList virtualization, and AI genre classification via Llama 3.3 70B (Groq API).
+                </p>
+              </div>
             </AnimatedSection>
 
             <AnimatedSection delay={0.3}>
-              <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed">
-                My projects range from a <span className="text-text-primary font-medium">Blockchain-Based Carbon Credit Tokenization and Carbon Off-Set Platform</span> utilizing ERC-1155 smart contracts and IPFS decentralized storage, to a <span className="text-text-primary font-medium">Cross-Platform Offline Music Player and Audio Application</span> with SQLite indexing and Groq API (Llama 3.3 70B) playlist generation.
-              </p>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.4}>
-              <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed">
-                I prioritize clean architecture, performant APIs, and dependable user experiences. My goal is simple: solve complex problems with reliable, well-tested code and modern technology stacks.
-              </p>
-            </AnimatedSection>
-          </div>
-
-          {/* Stats + Quick Facts */}
-          <div className="lg:col-span-2">
-            <AnimatedSection delay={0.3} direction="right">
-              <div className="grid grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
-                {stats.map((stat) => (
-                  <div
-                    key={stat.label}
-                    className="p-4 sm:p-5 bg-bg-surface rounded-xl border border-border"
-                  >
-                    <div className="text-2xl sm:text-heading text-text-primary font-bold">
-                      {stat.value}
-                    </div>
-                    <div className="text-caption text-text-muted mt-1">{stat.label}</div>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12 pt-8 border-t border-border">
+                {STATS.map((stat) => (
+                  <div key={stat.label} className="p-4 rounded-xl bg-bg-surface/40 border border-border/60">
+                    <div className="font-serif text-3xl sm:text-4xl text-text-primary">{stat.value}</div>
+                    <div className="font-mono text-label uppercase text-text-muted mt-1.5">{stat.label}</div>
                   </div>
                 ))}
               </div>
+            </AnimatedSection>
+          </div>
 
-              {/* Quick facts */}
-              <div className="p-5 sm:p-6 bg-bg-surface rounded-xl border border-border space-y-4">
-                <h3 className="text-label uppercase tracking-widest text-text-muted font-mono">
-                  Quick Facts
-                </h3>
-                <div className="space-y-3 text-caption">
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <span className="text-text-muted">Education</span>
-                    <span className="text-text-secondary font-medium">B.E. Information Technology</span>
-                  </div>
-                  <div className="h-px bg-border/50" />
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <span className="text-text-muted">Degree College</span>
-                    <span className="text-text-secondary font-medium">MMCOE, Pune</span>
-                  </div>
-                  <div className="h-px bg-border/50" />
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <span className="text-text-muted">Location</span>
-                    <span className="text-text-secondary font-medium">Pune, India</span>
-                  </div>
-                  <div className="h-px bg-border/50" />
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
-                    <span className="text-text-muted">Primary Stack</span>
-                    <span className="text-accent-mint font-mono text-xs sm:text-caption">React · Node · React Native · Web3</span>
-                  </div>
-                </div>
+          {/* Technical highlights rail */}
+          <div className="lg:col-span-5">
+            <AnimatedSection delay={0.25} direction="left">
+              <div className="p-6 sm:p-8 rounded-2xl bg-bg-surface/50 border border-border lg:sticky lg:top-28">
+                <p className="font-mono text-label uppercase tracking-[0.2em] text-text-muted mb-5 pb-3 border-b border-border/60">
+                  Technical Focus
+                </p>
+                <dl className="space-y-4">
+                  {HIGHLIGHTS.map((item) => (
+                    <div key={item.label} className="pb-4 last:pb-0 border-b last:border-b-0 border-border/40 group">
+                      <dt className="font-mono text-label uppercase text-accent-mint mb-1">
+                        {item.label}
+                      </dt>
+                      <dd className="text-caption text-text-secondary leading-relaxed group-hover:text-text-primary transition-colors duration-300">
+                        {item.value}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
               </div>
             </AnimatedSection>
           </div>
@@ -99,4 +102,3 @@ const About = () => {
 };
 
 export default About;
-

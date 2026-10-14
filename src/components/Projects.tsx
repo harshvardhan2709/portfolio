@@ -1,218 +1,206 @@
 import { motion } from 'framer-motion';
-import { Github, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Github, ArrowUpRight } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import { SectionHeading } from './ui/SectionHeading';
-import { Badge } from './ui/Badge';
-import { PROJECTS, Project } from '../data/projects';
+import { PROJECTS, type Project } from '../data/projects';
 
-// Featured project — large layout
-function FeaturedProject({ project }: { project: Project }) {
-  const [ref, isInView] = useInView<HTMLDivElement>();
-
+function ProjectLinks({ project }: { project: Project }) {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.6, ease: 'easeOut' }}
-      className="group relative p-5 sm:p-8 md:p-10 bg-bg-surface rounded-2xl border border-border hover:border-accent/30 transition-all duration-500 hover:shadow-glow mb-8 sm:mb-12"
-    >
-      {/* Featured label */}
-      <div className="flex flex-wrap items-center justify-between gap-2 mb-6">
-        <span className="text-label uppercase tracking-widest text-accent-mint font-mono">
-          Featured Project
-        </span>
-        <span className="text-caption text-text-muted font-mono">{project.year}</span>
-      </div>
-
-      <div className="grid lg:grid-cols-2 gap-6 lg:gap-8">
-        <div>
-          <h3 className="text-heading-sm sm:text-heading text-text-primary mb-2 group-hover:text-accent-mint transition-colors duration-300">
-            {project.title}
-          </h3>
-          <p className="text-caption text-text-muted font-mono mb-6">
-            {project.subtitle}
-          </p>
-
-          <div className="space-y-4 mb-6">
-            <div>
-              <span className="text-label uppercase tracking-widest text-text-muted block mb-1">
-                Problem
-              </span>
-              <p className="text-caption sm:text-body text-text-secondary">{project.problem}</p>
-            </div>
-            <div>
-              <span className="text-label uppercase tracking-widest text-text-muted block mb-1">
-                Solution
-              </span>
-              <p className="text-caption sm:text-body text-text-secondary">{project.solution}</p>
-            </div>
-            <div>
-              <span className="text-label uppercase tracking-widest text-text-muted block mb-1">
-                Impact
-              </span>
-              <p className="text-caption sm:text-body text-text-secondary">{project.impact}</p>
-            </div>
-          </div>
-        </div>
-
-        <div>
-          {/* Features */}
-          <div className="mb-6">
-            <span className="text-label uppercase tracking-widest text-text-muted block mb-3">
-              Key Features
-            </span>
-            <ul className="space-y-2">
-              {project.features.map((feature, i) => (
-                <li
-                  key={i}
-                  className="flex items-start gap-2.5 sm:gap-3 text-caption text-text-secondary"
-                >
-                  <span className="w-1.5 h-1.5 rounded-full bg-accent-mint mt-1.5 flex-shrink-0" />
-                  <span>{feature}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Tags */}
-          <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-6">
-            {project.tags.map((tag) => (
-              <Badge key={tag} variant="accent">{tag}</Badge>
-            ))}
-          </div>
-
-          {/* Links */}
-          <div className="flex flex-wrap items-center gap-3 sm:gap-4">
-            <a
-              href={project.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-text-secondary hover:text-text-primary border border-border hover:border-border-hover rounded-lg transition-all duration-300 bg-bg-elevated"
-            >
-              <Github size={14} />
-              Source Code
-            </a>
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-accent-mint hover:text-accent-mint/80 border border-accent/20 hover:border-accent/40 rounded-lg transition-all duration-300 bg-bg-elevated"
-              >
-                <ExternalLink size={14} />
-                Live Demo
-              </a>
-            )}
-          </div>
-        </div>
-      </div>
-    </motion.div>
+    <div className="flex flex-wrap items-center gap-3 pt-2">
+      <a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border hover:border-accent-mint/50 bg-bg-surface hover:bg-bg-elevated font-mono text-label uppercase text-text-secondary hover:text-accent-mint transition-all duration-300"
+      >
+        <Github size={14} />
+        <span>Source</span>
+        <ArrowUpRight size={13} />
+      </a>
+      {project.demo && (
+        <a
+          href={project.demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-accent/40 hover:border-accent-mint bg-accent/10 hover:bg-accent/20 font-mono text-label uppercase text-accent-mint transition-all duration-300"
+        >
+          <span>Live Demo</span>
+          <ArrowUpRight size={13} />
+        </a>
+      )}
+    </div>
   );
 }
 
-// Regular project card
-function ProjectCard({ project, index }: { project: Project; index: number }) {
+function TagList({ tags }: { tags: string[] }) {
+  return (
+    <div className="flex flex-wrap gap-2">
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="font-mono text-caption px-2.5 py-1 rounded-md bg-bg-elevated border border-border text-text-secondary hover:text-text-primary hover:border-accent-mint/40 transition-colors"
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function FeatureList({ features }: { features: string[] }) {
+  return (
+    <ul className="space-y-2.5">
+      {features.map((feature, i) => (
+        <li key={i} className="flex items-start gap-3 text-caption text-text-secondary leading-relaxed">
+          <span className="mt-[7px] h-1.5 w-1.5 rounded-full bg-accent-mint/70 flex-shrink-0" aria-hidden="true" />
+          <span>{feature}</span>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/* Featured Project Card */
+function FeaturedCard({ project, index }: { project: Project; index: number }) {
+  const [ref, isInView] = useInView<HTMLDivElement>({ threshold: 0.08 });
+
+  return (
+    <motion.article
+      ref={ref}
+      initial={{ opacity: 0, y: 28 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.6, delay: index * 0.1, ease: 'easeOut' }}
+      className="group relative p-6 sm:p-10 rounded-2xl bg-bg-surface/50 border border-border hover:border-border-hover hover:bg-bg-surface transition-all duration-300"
+    >
+      <div className="flex flex-col lg:grid lg:grid-cols-12 gap-8 lg:gap-12 items-start">
+        {/* Left column: Summary & Meta */}
+        <div className="lg:col-span-7 space-y-5">
+          <div className="flex flex-wrap items-center gap-3">
+            <span className="font-serif text-3xl sm:text-4xl text-accent-mint/40 group-hover:text-accent-mint transition-colors duration-300 select-none">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span className="font-mono text-label uppercase tracking-wider text-accent-mint px-2.5 py-0.5 rounded-full border border-accent/25 bg-accent/10">
+              {project.category}
+            </span>
+            <span className="font-mono text-caption text-text-muted ml-auto">
+              {project.year}
+            </span>
+          </div>
+
+          <div>
+            <h3 className="font-serif text-heading sm:text-display-sm text-text-primary leading-tight group-hover:text-accent-mint transition-colors duration-300">
+              {project.title}
+            </h3>
+            <p className="font-mono text-caption text-accent-mint/80 mt-2">
+              {project.subtitle}
+            </p>
+          </div>
+
+          <p className="text-body text-text-secondary leading-relaxed">
+            {project.description}
+          </p>
+
+          <ProjectLinks project={project} />
+        </div>
+
+        {/* Right column: Key Highlights & Stack */}
+        <div className="lg:col-span-5 w-full space-y-6 pt-2 lg:pt-0 lg:border-l lg:border-border lg:pl-8">
+          <div>
+            <p className="font-mono text-label uppercase tracking-wider text-text-muted mb-3">
+              Key Architecture & Features
+            </p>
+            <FeatureList features={project.features} />
+          </div>
+
+          <div>
+            <p className="font-mono text-label uppercase tracking-wider text-text-muted mb-3">
+              Technologies & Stack
+            </p>
+            <TagList tags={project.tags} />
+          </div>
+        </div>
+      </div>
+    </motion.article>
+  );
+}
+
+/* Compact archive row for remaining projects */
+function ArchiveRow({ project, index }: { project: Project; index: number }) {
   const [ref, isInView] = useInView<HTMLDivElement>();
 
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 16 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
-      className="group relative p-5 sm:p-6 bg-bg-surface rounded-xl border border-border hover:border-border-hover transition-all duration-300 hover:shadow-card-hover flex flex-col"
+      transition={{ duration: 0.5, delay: index * 0.06 }}
+      className="group relative border-t border-border last:border-b"
     >
-      {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-1 sm:gap-2 mb-4">
-        <div className="flex-1">
-          <h3 className="text-body-lg sm:text-heading-sm font-bold text-text-primary group-hover:text-accent-mint transition-colors duration-300">
+      <a
+        href={project.github}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="grid grid-cols-[2.5rem_1fr_auto] sm:grid-cols-[3rem_1fr_auto_auto] items-center gap-4 sm:gap-6 py-5 sm:py-6 px-3 -mx-3 rounded-xl hover:bg-bg-surface/70 transition-all duration-300"
+        aria-label={`${project.title} — view repository`}
+      >
+        <span className="font-mono text-caption text-accent-mint/50 group-hover:text-accent-mint transition-colors">
+          {String(index + 4).padStart(2, '0')}
+        </span>
+        <div className="min-w-0">
+          <span className="block font-serif text-heading-sm sm:text-heading text-text-primary group-hover:text-accent-mint transition-colors duration-300 truncate">
             {project.title}
-          </h3>
-          <p className="text-caption text-text-muted font-mono mt-1">
-            {project.subtitle}
-          </p>
-        </div>
-        <span className="text-caption text-text-muted font-mono self-start sm:self-auto">{project.year}</span>
-      </div>
-
-      {/* Description */}
-      <p className="text-caption text-text-secondary leading-relaxed mb-4 flex-1">
-        {project.description}
-      </p>
-
-      {/* Features */}
-      <ul className="space-y-1.5 mb-5">
-        {project.features.slice(0, 3).map((feature, i) => (
-          <li key={i} className="flex items-start gap-2 text-caption text-text-muted">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent/60 mt-1.5 flex-shrink-0" />
-            <span>{feature}</span>
-          </li>
-        ))}
-      </ul>
-
-      {/* Tags */}
-      <div className="flex flex-wrap gap-1.5 mb-5">
-        {project.tags.map((tag) => (
-          <span key={tag} className="text-caption font-mono text-text-muted">
-            {tag}
-            {tag !== project.tags[project.tags.length - 1] && (
-              <span className="ml-1.5 text-border">·</span>
-            )}
           </span>
-        ))}
-      </div>
-
-      {/* Links */}
-      <div className="flex items-center gap-4 pt-4 border-t border-border/50">
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-caption text-text-muted hover:text-text-primary transition-colors duration-300"
-        >
-          <Github size={14} />
-          Code
-        </a>
-        {project.demo && (
-          <a
-            href={project.demo}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-caption text-text-muted hover:text-accent-mint transition-colors duration-300"
-          >
-            <ArrowUpRight size={14} />
-            Demo
-          </a>
-        )}
-      </div>
+          <span className="block font-mono text-caption text-text-muted mt-0.5 truncate">
+            {project.subtitle}
+          </span>
+        </div>
+        <span className="hidden sm:block font-mono text-caption text-text-muted whitespace-nowrap">
+          {project.year}
+        </span>
+        <span className="font-mono text-label uppercase text-text-muted group-hover:text-accent-mint transition-colors duration-300 flex items-center gap-1.5 flex-shrink-0">
+          <Github size={13} className="sm:hidden" />
+          <span className="hidden sm:inline">Code</span>
+          <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+        </span>
+      </a>
     </motion.div>
   );
 }
 
 const Projects = () => {
   const featured = PROJECTS.filter((p) => p.featured);
-  const regular = PROJECTS.filter((p) => !p.featured);
+  const archive = PROJECTS.filter((p) => !p.featured);
 
   return (
-    <section id="projects" className="relative py-20 sm:py-32 border-t border-border/30">
+    <section id="projects" className="relative py-24 sm:py-32">
       <div className="section-container">
         <SectionHeading
-          label="Projects"
-          title="Selected Work"
-          description="A selection of projects I've built — from blockchain platforms to full-stack web applications."
+          index="03"
+          label="Selected Work"
+          title="Projects"
+          description="Production-grade applications across mobile, full-stack web, and blockchain — each built end-to-end with a focus on performance and reliability."
         />
 
-        {/* Featured projects */}
-        {featured.map((project) => (
-          <FeaturedProject key={project.title} project={project} />
-        ))}
-
-        {/* Project grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-          {regular.map((project, index) => (
-            <ProjectCard key={project.title} project={project} index={index} />
+        {/* Featured Projects Stack */}
+        <div className="space-y-8 sm:space-y-12">
+          {featured.map((project, i) => (
+            <FeaturedCard key={project.title} project={project} index={i} />
           ))}
+        </div>
+
+        {/* Additional Archive Projects */}
+        <div className="mt-20 sm:mt-24">
+          <div className="flex items-baseline gap-4 mb-8">
+            <span className="font-mono text-label uppercase tracking-[0.2em] text-text-muted">
+              More Projects & Experiments
+            </span>
+            <span className="rule flex-1 hidden sm:block" aria-hidden="true" />
+          </div>
+          <div className="border-t border-border">
+            {archive.map((project, i) => (
+              <ArchiveRow key={project.title} project={project} index={i} />
+            ))}
+          </div>
         </div>
       </div>
     </section>

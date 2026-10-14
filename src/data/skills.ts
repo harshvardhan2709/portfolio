@@ -8,32 +8,42 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: 'Languages',
     icon: 'terminal',
-    skills: ['JavaScript', 'TypeScript', 'Java', 'SQL'],
+    skills: ['JavaScript', 'TypeScript', 'Java', 'Python', 'SQL'],
+  },
+  {
+    title: 'Backend',
+    icon: 'server',
+    skills: ['Node.js', 'Express.js', 'RESTful APIs', 'JWT Authentication', 'MVC Architecture'],
   },
   {
     title: 'Frontend & Mobile',
     icon: 'layout',
-    skills: ['React.js', 'React Native', 'NativeWind', 'Zustand', 'HTML5', 'CSS3', 'Tailwind CSS', 'Material UI'],
+    skills: ['React.js', 'React Native', 'HTML5', 'CSS3', 'Tailwind CSS', 'NativeWind', 'Material UI'],
   },
   {
-    title: 'Backend & Web3',
-    icon: 'server',
-    skills: ['Node.js', 'Express.js', 'RESTful APIs', 'JWT Authentication', 'MVC Architecture', 'Java Backend Fundamentals', 'Solidity (ERC-1155)'],
+    title: 'AI / GenAI',
+    icon: 'cpu',
+    skills: ['LLM API Integration', 'Groq', 'Llama 3.3', 'Prompt Engineering'],
   },
   {
     title: 'Databases',
     icon: 'database',
-    skills: ['MySQL', 'MongoDB', 'Oracle', 'SQLite'],
+    skills: ['MongoDB', 'MySQL', 'SQLite', 'Oracle'],
+  },
+  {
+    title: 'Blockchain & Web3',
+    icon: 'link',
+    skills: ['Solidity (ERC-1155)', 'Hardhat', 'IPFS'],
   },
   {
     title: 'Tools & Platforms',
-    icon: 'smartphone',
-    skills: ['Git', 'GitHub', 'Postman', 'Expo', 'Hardhat', 'IPFS'],
+    icon: 'wrench',
+    skills: ['Git', 'GitHub', 'Postman', 'Expo'],
   },
   {
     title: 'Core Concepts',
     icon: 'blocks',
-    skills: ['Object-Oriented Programming (OOP)', 'DBMS', 'Database Design', 'SDLC', 'Agile Methodology'],
+    skills: ['OOP', 'DBMS', 'Database Design', 'SDLC', 'Agile', 'DSA'],
   },
 ];
 

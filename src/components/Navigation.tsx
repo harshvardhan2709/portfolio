@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download, Sun, Moon } from 'lucide-react';
 import { NAV_ITEMS, PERSONAL } from '../data/constants';
@@ -9,20 +9,15 @@ interface NavigationProps {
 }
 
 const Navigation = ({ activeSection }: NavigationProps) => {
-  const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
-
-  useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 50);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
     document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
-    return () => { document.body.style.overflow = ''; };
+    return () => {
+      document.body.style.overflow = '';
+    };
   }, [isMobileMenuOpen]);
 
   const scrollToSection = (id: string) => {
@@ -36,122 +31,110 @@ const Navigation = ({ activeSection }: NavigationProps) => {
   return (
     <>
       <motion.nav
-        initial={{ y: -20, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? 'bg-bg-primary/80 backdrop-blur-xl border-b border-border/50'
-            : 'bg-transparent'
-        }`}
+        initial={{ y: -24, x: '-50%' }}
+        animate={{ y: 0, x: '-50%' }}
+        transition={{ duration: 0.6, delay: 0.15, ease: 'easeOut' }}
+        className="fixed top-4 left-1/2 z-50 glass-nav rounded-full"
+        aria-label="Primary"
       >
-        <div className="section-container">
-          <div className="flex items-center justify-between h-16">
-            {/* Logo / Name */}
-            <button
-              onClick={() => scrollToSection('home')}
-              className="text-text-primary font-semibold text-body tracking-tight hover:text-accent-mint transition-colors duration-300"
-              aria-label="Go to top"
-            >
-              HS<span className="text-accent-mint">.</span>
-            </button>
+        <div className="flex items-center gap-1 sm:gap-1.5 pl-4 pr-1.5 sm:pl-5 sm:pr-2 py-1.5">
+          {/* Monogram */}
+          <button
+            onClick={() => scrollToSection('home')}
+            className="mr-2 sm:mr-4 font-serif text-lg text-text-primary hover:text-accent-mint transition-colors duration-300 leading-none"
+            aria-label="Back to top"
+          >
+            HS<span className="text-accent-mint">.</span>
+          </button>
 
-            {/* Desktop Nav — Floating pill */}
-            <div className="hidden md:flex items-center">
-              <div className={`flex items-center gap-1 px-1.5 py-1.5 rounded-full transition-all duration-500 ${
-                isScrolled ? 'bg-bg-surface/80 border border-border/50' : ''
-              }`}>
-                {NAV_ITEMS.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`relative px-3.5 py-1.5 text-caption font-medium rounded-full transition-all duration-300 ${
-                      activeSection === item.id
-                        ? 'text-text-primary'
-                        : 'text-text-muted hover:text-text-secondary'
-                    }`}
-                  >
-                    {activeSection === item.id && (
-                      <motion.div
-                        layoutId="activeSection"
-                        className="absolute inset-0 bg-bg-elevated rounded-full border border-border"
-                        transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                      />
-                    )}
-                    <span className="relative z-10">{item.label}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Right side — Theme toggle + Resume + Mobile menu button */}
-            <div className="flex items-center gap-3">
-              {/* Theme Toggle Button */}
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center">
+            {NAV_ITEMS.map((item) => (
               <button
-                onClick={toggleTheme}
-                className="p-2 rounded-lg border border-border hover:border-border-hover bg-bg-surface text-text-muted hover:text-text-primary transition-all duration-300 flex items-center justify-center"
-                aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-                title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                aria-current={activeSection === item.id ? 'true' : undefined}
+                className={`relative px-3 lg:px-3.5 py-1.5 text-label font-mono uppercase transition-colors duration-300 ${
+                  activeSection === item.id
+                    ? 'text-accent-mint'
+                    : 'text-text-muted hover:text-text-primary'
+                }`}
               >
-                <motion.div
-                  key={theme}
-                  initial={{ scale: 0.5, rotate: -90, opacity: 0 }}
-                  animate={{ scale: 1, rotate: 0, opacity: 1 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  {theme === 'dark' ? (
-                    <Sun size={18} className="text-amber-400" />
-                  ) : (
-                    <Moon size={18} className="text-indigo-600" />
-                  )}
-                </motion.div>
+                {item.label}
+                {activeSection === item.id && (
+                  <motion.span
+                    layoutId="nav-active-dot"
+                    className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 h-1 w-1 rounded-full bg-accent-mint"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
               </button>
-
-              <a
-                href={PERSONAL.resumeUrl}
-                download="HARSHVARDHAN_SAWANT.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hidden md:inline-flex items-center gap-2 px-4 py-2 text-caption font-medium text-text-secondary hover:text-text-primary border border-border hover:border-border-hover rounded-lg transition-all duration-300 bg-bg-surface"
-              >
-                <Download size={14} />
-                Resume
-              </a>
-
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="md:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
-                aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
-              >
-                {isMobileMenuOpen ? <X size={20} /> : <Menu size={20} />}
-              </button>
-            </div>
+            ))}
           </div>
+
+          <span className="hidden md:block h-4 w-px bg-border mx-1" aria-hidden="true" />
+
+          {/* Resume */}
+          <a
+            href={PERSONAL.resumeUrl}
+            download="HARSHVARDHAN_SAWANT.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center gap-1.5 px-3 py-1.5 text-label font-mono uppercase text-text-secondary hover:text-text-primary transition-colors duration-300"
+          >
+            <Download size={13} />
+            Resume
+          </a>
+
+          {/* Theme toggle */}
+          <button
+            id="theme-toggle-btn"
+            onClick={toggleTheme}
+            className="p-1.5 sm:p-2 rounded-full text-text-secondary hover:text-accent-mint hover:bg-bg-elevated/70 border border-transparent hover:border-border transition-all duration-300 flex items-center justify-center cursor-pointer"
+            aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+            title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+          >
+            {theme === 'dark' ? (
+              <Sun size={16} className="text-accent-mint transition-transform duration-300 hover:rotate-45" />
+            ) : (
+              <Moon size={16} className="text-accent-default transition-transform duration-300 hover:-rotate-12" />
+            )}
+          </button>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden p-2 text-text-secondary hover:text-text-primary transition-colors"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-expanded={isMobileMenuOpen}
+          >
+            {isMobileMenuOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile menu overlay */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
+            transition={{ duration: 0.25 }}
             className="fixed inset-0 z-40 bg-bg-primary/95 backdrop-blur-xl md:hidden"
           >
-            <div className="flex flex-col items-center justify-center h-full gap-2">
+            <div className="flex flex-col items-center justify-center h-full gap-1">
               {NAV_ITEMS.map((item, index) => (
                 <motion.button
                   key={item.id}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ delay: index * 0.05, duration: 0.3 }}
+                  exit={{ opacity: 0, y: 8 }}
+                  transition={{ delay: index * 0.045, duration: 0.3 }}
                   onClick={() => scrollToSection(item.id)}
-                  className={`px-6 py-3 text-heading-sm font-medium rounded-xl transition-colors duration-300 ${
+                  className={`px-6 py-2.5 font-serif text-3xl transition-colors duration-300 ${
                     activeSection === item.id
-                      ? 'text-accent-mint'
+                      ? 'text-accent-mint italic'
                       : 'text-text-muted hover:text-text-primary'
                   }`}
                 >
@@ -160,37 +143,31 @@ const Navigation = ({ activeSection }: NavigationProps) => {
               ))}
 
               <motion.div
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 16 }}
                 animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: 10 }}
-                transition={{ delay: NAV_ITEMS.length * 0.05, duration: 0.3 }}
-                className="flex items-center gap-4 mt-6"
+                exit={{ opacity: 0, y: 8 }}
+                transition={{ delay: NAV_ITEMS.length * 0.045, duration: 0.3 }}
+                className="flex flex-col sm:flex-row items-center gap-4 mt-8"
               >
-                <button
-                  onClick={toggleTheme}
-                  className="flex items-center gap-2 px-5 py-3 text-body font-medium text-text-primary border border-border rounded-xl bg-bg-surface"
-                >
-                  {theme === 'dark' ? (
-                    <>
-                      <Sun size={18} className="text-amber-400" /> Light Mode
-                    </>
-                  ) : (
-                    <>
-                      <Moon size={18} className="text-indigo-600" /> Dark Mode
-                    </>
-                  )}
-                </button>
-
                 <a
                   href={PERSONAL.resumeUrl}
                   download="HARSHVARDHAN_SAWANT.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-3 text-body font-medium text-accent-mint border border-accent/30 rounded-xl bg-bg-surface"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 font-mono text-label uppercase text-accent-mint border border-accent/30 rounded-full"
                 >
-                  <Download size={16} />
+                  <Download size={14} />
                   Resume
                 </a>
+
+                <button
+                  onClick={toggleTheme}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 font-mono text-label uppercase text-text-secondary hover:text-text-primary border border-border rounded-full hover:border-border-hover transition-colors"
+                  aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+                >
+                  {theme === 'dark' ? <Sun size={14} className="text-accent-mint" /> : <Moon size={14} className="text-accent-mint" />}
+                  <span>{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
+                </button>
               </motion.div>
             </div>
           </motion.div>

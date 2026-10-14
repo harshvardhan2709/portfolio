@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #090b0a; }
+    iframe { width: 100vw; height: 100vh; border: 0; display: block; }
+  </style>
+</head>
+<body>
+  <iframe id="app" src="/"></iframe>
+  <script>
+    const target = new URLSearchParams(location.search).get('to') || '#home';
+    const frame = document.getElementById('app');
+    frame.addEventListener('load', () => {
+      const doc = frame.contentDocument;
+      doc.documentElement.style.scrollBehavior = 'auto';
+      // Wait for React to mount and liquidGL to initialize.
+      setTimeout(() => {
+        const el = doc.querySelector(target);
+        if (el) el.scrollIntoView({ block: 'start' });
+      }, 6000);
+    });
+  </script>
+</body>
+</html>

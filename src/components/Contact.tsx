@@ -1,26 +1,20 @@
-import { Mail, MapPin, Send, ArrowUpRight, Phone } from 'lucide-react';
+import { MapPin, ArrowUpRight, Send } from 'lucide-react';
 import { useState } from 'react';
 import { SectionHeading } from './ui/SectionHeading';
 import { AnimatedSection } from './ui/AnimatedSection';
 import { PERSONAL, SOCIAL } from '../data/constants';
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  });
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
 
+  // Opens the visitor's email client — no backend, no fake success state.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-
-    const subject = encodeURIComponent('Portfolio Contact — Let\'s Connect');
+    const subject = encodeURIComponent(`Portfolio contact from ${formData.name}`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`
     );
-
     window.location.href = `mailto:${PERSONAL.email}?subject=${subject}&body=${body}`;
-    setFormData({ name: '', email: '', message: '' });
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -28,158 +22,172 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="relative py-20 sm:py-32 border-t border-border/30">
-      <div className="section-container">
+    <section id="contact" className="relative py-24 sm:py-32 overflow-hidden">
+      {/* Backdrop glow */}
+      <div className="absolute inset-0" aria-hidden="true">
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[700px] h-[380px] bg-accent/6 rounded-full blur-[140px]" />
+      </div>
+
+      <div className="section-container relative">
         <SectionHeading
+          index="06"
           label="Contact"
-          title="Get in Touch"
-          description="Open to full-time roles, software engineering opportunities, and project collaborations. Let's connect."
+          title="Let's build something"
+          description="Open to full-time roles, software engineering opportunities, and project collaborations."
         />
 
-        <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
-          {/* Left side — Info */}
-          <AnimatedSection delay={0.1}>
-            <div className="space-y-6 sm:space-y-8">
-              <p className="text-body sm:text-body-lg text-text-secondary leading-relaxed">
-                I'm always interested in hearing about new opportunities and engineering challenges.
-                Whether you have a role, a question, or a project in mind — feel free to reach out.
-              </p>
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-16">
+          {/* Direct channels */}
+          <div className="lg:col-span-5">
+            <AnimatedSection delay={0.1}>
+              <div className="p-6 sm:p-8 rounded-2xl bg-bg-surface/50 border border-border space-y-4">
+                <p className="font-mono text-label uppercase tracking-wider text-text-muted mb-2">
+                  Get In Touch Directly
+                </p>
 
-              {/* Contact details */}
-              <div className="space-y-3 sm:space-y-5">
                 <a
                   href={SOCIAL.email}
-                  className="group flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-bg-surface transition-colors duration-300 border border-transparent hover:border-border bg-bg-surface/50"
+                  className="group flex items-center justify-between gap-4 py-3.5 px-3 rounded-xl hover:bg-bg-elevated/70 border border-transparent hover:border-border transition-all duration-300"
                 >
-                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint flex-shrink-0">
-                    <Mail size={18} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h4 className="text-caption font-medium text-text-primary mb-0.5">
-                      Email
-                    </h4>
-                    <span className="text-caption text-text-muted group-hover:text-accent-mint transition-colors duration-300 block truncate">
+                  <div>
+                    <span className="block font-mono text-label uppercase text-text-muted mb-0.5">Email</span>
+                    <span className="block text-body text-text-primary group-hover:text-accent-mint transition-colors duration-300 break-all">
                       {PERSONAL.email}
                     </span>
                   </div>
-                  <ArrowUpRight
-                    size={14}
-                    className="ml-auto text-text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0"
-                  />
+                  <ArrowUpRight size={16} className="text-text-muted group-hover:text-accent-mint group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 flex-shrink-0" />
+                </a>
+
+                <a
+                  href={SOCIAL.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-4 py-3.5 px-3 rounded-xl hover:bg-bg-elevated/70 border border-transparent hover:border-border transition-all duration-300"
+                >
+                  <div>
+                    <span className="block font-mono text-label uppercase text-text-muted mb-0.5">GitHub</span>
+                    <span className="block text-body text-text-primary group-hover:text-accent-mint transition-colors duration-300">
+                      github.com/harshvardhan2709
+                    </span>
+                  </div>
+                  <ArrowUpRight size={16} className="text-text-muted group-hover:text-accent-mint group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 flex-shrink-0" />
+                </a>
+
+                <a
+                  href={SOCIAL.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group flex items-center justify-between gap-4 py-3.5 px-3 rounded-xl hover:bg-bg-elevated/70 border border-transparent hover:border-border transition-all duration-300"
+                >
+                  <div>
+                    <span className="block font-mono text-label uppercase text-text-muted mb-0.5">LinkedIn</span>
+                    <span className="block text-body text-text-primary group-hover:text-accent-mint transition-colors duration-300">
+                      Harshvardhan Sawant
+                    </span>
+                  </div>
+                  <ArrowUpRight size={16} className="text-text-muted group-hover:text-accent-mint group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 flex-shrink-0" />
                 </a>
 
                 <a
                   href={SOCIAL.phone}
-                  className="group flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 rounded-xl hover:bg-bg-surface transition-colors duration-300 border border-transparent hover:border-border bg-bg-surface/50"
+                  className="group flex items-center justify-between gap-4 py-3.5 px-3 rounded-xl hover:bg-bg-elevated/70 border border-transparent hover:border-border transition-all duration-300"
                 >
-                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint flex-shrink-0">
-                    <Phone size={18} />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h4 className="text-caption font-medium text-text-primary mb-0.5">
-                      Phone
-                    </h4>
-                    <span className="text-caption text-text-muted group-hover:text-accent-mint transition-colors duration-300 block truncate">
+                  <div>
+                    <span className="block font-mono text-label uppercase text-text-muted mb-0.5">Phone</span>
+                    <span className="block text-body text-text-primary group-hover:text-accent-mint transition-colors duration-300">
                       {PERSONAL.phone}
                     </span>
                   </div>
-                  <ArrowUpRight
-                    size={14}
-                    className="ml-auto text-text-muted opacity-0 group-hover:opacity-100 transition-opacity duration-300 shrink-0"
-                  />
+                  <ArrowUpRight size={16} className="text-text-muted group-hover:text-accent-mint group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-all duration-300 flex-shrink-0" />
                 </a>
 
-                <div className="flex items-start gap-3 sm:gap-4 p-3.5 sm:p-4 bg-bg-surface/50 rounded-xl">
-                  <div className="p-2.5 rounded-lg bg-accent-glow text-accent-mint flex-shrink-0">
-                    <MapPin size={18} />
+                <div className="pt-2 border-t border-border/60 space-y-3">
+                  <div className="flex items-center gap-3 px-3 py-1">
+                    <MapPin size={16} className="text-accent-mint flex-shrink-0" />
+                    <span className="text-caption text-text-secondary">{PERSONAL.location}</span>
                   </div>
-                  <div>
-                    <h4 className="text-caption font-medium text-text-primary mb-0.5">
-                      Location
-                    </h4>
-                    <span className="text-caption text-text-muted">
-                      {PERSONAL.location}
+
+                  <div className="flex items-start gap-3 px-3 py-1">
+                    <span className="relative flex h-2 w-2 mt-1.5 flex-shrink-0">
+                      <span className="animate-pulse-slow absolute inline-flex h-full w-full rounded-full bg-accent-mint opacity-60" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-mint" />
+                    </span>
+                    <span className="font-mono text-caption text-text-muted leading-relaxed">
+                      {PERSONAL.availability}
                     </span>
                   </div>
                 </div>
               </div>
+            </AnimatedSection>
+          </div>
 
-              {/* Availability */}
-              <div className="flex items-center gap-2 text-caption text-text-muted">
-                <span className="w-2 h-2 bg-accent-mint rounded-full animate-pulse-slow flex-shrink-0" />
-                <span>{PERSONAL.availability}</span>
-              </div>
+          {/* Email composer (opens the visitor's mail client) */}
+          <AnimatedSection delay={0.2} direction="left" className="lg:col-span-7">
+            <div className="p-6 sm:p-8 rounded-2xl bg-bg-surface/50 border border-border">
+              <form onSubmit={handleSubmit} className="space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
+                  <div>
+                    <label htmlFor="contact-name" className="block font-mono text-label uppercase text-text-muted mb-2">
+                      Name
+                    </label>
+                    <input
+                      type="text"
+                      id="contact-name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-bg-elevated/60 border border-border rounded-xl text-text-primary text-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent-mint/60 transition-colors duration-300"
+                      placeholder="Your name"
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="contact-email" className="block font-mono text-label uppercase text-text-muted mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="contact-email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-bg-elevated/60 border border-border rounded-xl text-text-primary text-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent-mint/60 transition-colors duration-300"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label htmlFor="contact-message" className="block font-mono text-label uppercase text-text-muted mb-2">
+                    Message
+                  </label>
+                  <textarea
+                    id="contact-message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 bg-bg-elevated/60 border border-border rounded-xl text-text-primary text-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent-mint/60 transition-colors duration-300 resize-none"
+                    placeholder="Tell me about the role or project…"
+                  />
+                </div>
+
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pt-2">
+                  <button
+                    type="submit"
+                    className="group inline-flex items-center justify-center gap-2.5 px-7 py-3.5 rounded-full bg-accent text-white font-mono text-label uppercase tracking-wider border border-accent/60 hover:bg-accent-light transition-all duration-300 shadow-glow-sm hover:shadow-glow cursor-pointer"
+                  >
+                    <span>Compose email</span>
+                    <Send size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" />
+                  </button>
+                  <p className="font-mono text-caption text-text-muted">
+                    Opens your default email client.
+                  </p>
+                </div>
+              </form>
             </div>
-          </AnimatedSection>
-
-          {/* Right side — Form */}
-          <AnimatedSection delay={0.2} direction="right">
-            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
-              <div>
-                <label
-                  htmlFor="contact-name"
-                  className="block text-caption font-medium text-text-secondary mb-2"
-                >
-                  Name
-                </label>
-                <input
-                  type="text"
-                  id="contact-name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-bg-surface border border-border rounded-lg text-text-primary text-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300"
-                  placeholder="Your name"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-email"
-                  className="block text-caption font-medium text-text-secondary mb-2"
-                >
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="contact-email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="w-full px-4 py-3 bg-bg-surface border border-border rounded-lg text-text-primary text-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300"
-                  placeholder="you@example.com"
-                />
-              </div>
-
-              <div>
-                <label
-                  htmlFor="contact-message"
-                  className="block text-caption font-medium text-text-secondary mb-2"
-                >
-                  Message
-                </label>
-                <textarea
-                  id="contact-message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={4}
-                  className="w-full px-4 py-3 bg-bg-surface border border-border rounded-lg text-text-primary text-body placeholder:text-text-muted/50 focus:outline-none focus:border-accent/50 focus:ring-1 focus:ring-accent/20 transition-all duration-300 resize-none"
-                  placeholder="Tell me about your project or opportunity..."
-                />
-              </div>
-
-              <button
-                type="submit"
-                className="w-full py-3.5 px-6 bg-accent text-white font-medium rounded-lg hover:bg-accent-light border border-accent/50 shadow-glow-sm hover:shadow-glow transition-all duration-300 flex items-center justify-center gap-2 text-caption"
-              >
-                Send Message
-                <Send size={14} />
-              </button>
-            </form>
           </AnimatedSection>
         </div>
       </div>
