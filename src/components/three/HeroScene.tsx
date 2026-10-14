@@ -38,7 +38,7 @@ function hasWebGLSupport(): boolean {
 
 export default function HeroScene() {
   const reducedMotion = useReducedMotion() ?? false;
-  const [lowPower] = useState(
+  const [lowPower, setLowPower] = useState(
     () =>
       typeof window !== 'undefined' &&
       window.matchMedia('(max-width: 768px)').matches
@@ -46,6 +46,13 @@ export default function HeroScene() {
   const [webglSupported] = useState(hasWebGLSupport);
   const [inView, setInView] = useState(true);
   const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)');
+    const onChange = (e: MediaQueryListEvent) => setLowPower(e.matches);
+    media.addEventListener('change', onChange);
+    return () => media.removeEventListener('change', onChange);
+  }, []);
 
   useEffect(() => {
     const element = wrapperRef.current;
@@ -60,6 +67,7 @@ export default function HeroScene() {
 
   const frameloop = !inView ? 'never' : reducedMotion ? 'demand' : 'always';
 
+  if (lowPower) return null;
   if (!webglSupported) return <SculptureFallback />;
 
   return (

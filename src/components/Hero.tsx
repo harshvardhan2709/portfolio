@@ -1,4 +1,4 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Linkedin, Mail, ArrowDown, ArrowUpRight } from 'lucide-react';
 import { PERSONAL, SOCIAL } from '../data/constants';
@@ -16,6 +16,18 @@ const fadeUp = {
 };
 
 const Hero = () => {
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window === 'undefined') return false;
+    return window.matchMedia('(max-width: 768px)').matches;
+  });
+
+  useEffect(() => {
+    const media = window.matchMedia('(max-width: 768px)');
+    const onChange = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    media.addEventListener('change', onChange);
+    return () => media.removeEventListener('change', onChange);
+  }, []);
+
   return (
     <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Backdrop */}
@@ -25,12 +37,14 @@ const Hero = () => {
         <div className="absolute bottom-0 right-0 w-[480px] h-[480px] bg-accent-light/4 rounded-full blur-[120px]" />
       </div>
 
-      {/* 3D sculpture — full-width & full-height container so rings/animation are never clipped */}
-      <div className="absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
-        <Suspense fallback={<SculptureFallback />}>
-          <HeroScene />
-        </Suspense>
-      </div>
+      {/* 3D sculpture rendered only on desktop; completely removed on mobile */}
+      {!isMobile && (
+        <div className="hidden md:block absolute inset-0 w-full h-full pointer-events-none z-0 overflow-hidden">
+          <Suspense fallback={<SculptureFallback />}>
+            <HeroScene />
+          </Suspense>
+        </div>
+      )}
 
       {/* Editorial side label */}
       <div
