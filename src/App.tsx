@@ -11,6 +11,7 @@ import { useEffect } from 'react';
 import { ScrollProgress } from './components/ui/ScrollProgress';
 import { useScrollSpy } from './hooks/useScrollSpy';
 import { SECTION_IDS } from './data/constants';
+import ChatBot from './components/chat/ChatBot';
 
 function App() {
   const activeSection = useScrollSpy([...SECTION_IDS]);
@@ -38,6 +39,7 @@ function App() {
       </main>
 
       <Footer />
+      <ChatBot />
     </div>
   );
 }

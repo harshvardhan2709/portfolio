@@ -91,7 +91,7 @@ export const PROJECTS: Project[] = [
     ],
     github: 'https://github.com/harshvardhan2709/Movies-Website',
     demo: 'https://github.com/harshvardhan2709/Movies-Website',
-    year: '2024',
+    year: '2025',
   },
   {
     title: 'Getlancer',

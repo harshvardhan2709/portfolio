@@ -189,4 +189,21 @@ html.light {
     -webkit-mask-image: linear-gradient(90deg, #000 82%, transparent);
     mask-image: linear-gradient(90deg, #000 82%, transparent);
   }
+
+  /* Terminal Glass Floating Window */
+  .terminal-glass {
+    background-color: rgba(10, 14, 12, 0.78);
+    -webkit-backdrop-filter: blur(32px) saturate(1.8);
+    backdrop-filter: blur(32px) saturate(1.8);
+    border: 1px solid rgba(149, 213, 178, 0.22);
+    box-shadow: 0 30px 100px -20px rgba(0, 0, 0, 0.9), 0 0 50px rgba(45, 106, 79, 0.2);
+  }
+
+  html.light .terminal-glass {
+    background-color: rgba(250, 252, 250, 0.78);
+    -webkit-backdrop-filter: blur(32px) saturate(1.8);
+    backdrop-filter: blur(32px) saturate(1.8);
+    border: 1px solid rgba(27, 67, 50, 0.25);
+    box-shadow: 0 30px 100px -20px rgba(0, 0, 0, 0.35), 0 0 45px rgba(45, 106, 79, 0.15);
+  }
 }
