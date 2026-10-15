@@ -23,6 +23,7 @@ import {
   streamChatResponse,
   GROQ_CONFIG,
 } from '../../services/groqApi';
+import { useLockBodyScroll } from '../../hooks/useLockBodyScroll';
 
 const STORAGE_CHAT_KEY = 'portfolio_chat_messages_v2';
 
@@ -42,6 +43,9 @@ How can I help you explore his work today?`,
 export const ChatBot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isMaximized, setIsMaximized] = useState(false);
+
+  // Prevent background scrolling when terminal/chat is open
+  useLockBodyScroll(isOpen);
   const [cooldownSeconds, setCooldownSeconds] = useState(0);
   const [messages, setMessages] = useState<ChatMessageType[]>(() => {
     try {
@@ -285,24 +289,24 @@ export const ChatBot = () => {
               exit={{ opacity: 0 }}
               transition={{ duration: 0.25 }}
               onClick={() => setIsOpen(false)}
-              className="fixed inset-0 z-40 bg-black/65 backdrop-blur-lg"
+              className="fixed inset-0 z-40 bg-black/65 backdrop-blur-lg touch-none"
               aria-hidden="true"
             />
 
             {/* Centered Large Floating Terminal Window */}
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-8 pointer-events-none">
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-5 md:p-8 pointer-events-none overscroll-contain">
               <motion.div
                 initial={{ opacity: 0, scale: 0.93, y: 24 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 exit={{ opacity: 0, scale: 0.93, y: 20 }}
                 transition={{ type: 'spring', damping: 28, stiffness: 300 }}
-                className={`pointer-events-auto relative flex flex-col rounded-2xl sm:rounded-3xl terminal-glass overflow-hidden transition-all duration-300 ${isMaximized
+                className={`pointer-events-auto relative flex flex-col rounded-2xl sm:rounded-3xl terminal-glass overflow-hidden overscroll-contain transition-all duration-300 ${isMaximized
                   ? 'w-full h-full max-w-[97vw] max-h-[96vh]'
                   : 'w-full max-w-4xl lg:max-w-5xl h-[88vh] sm:h-[84vh]'
                   }`}
               >
                 {/* Terminal Window Header with macOS Traffic Lights & Title Bar */}
-                <header className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-border/60 bg-bg-surface/40 select-none">
+                <header className="flex items-center justify-between px-4 sm:px-6 py-3.5 border-b border-border/60 bg-bg-surface/40 select-none touch-none">
                   {/* Left: Traffic light control dots */}
                   <div className="flex items-center gap-2">
                     <button
@@ -381,7 +385,7 @@ export const ChatBot = () => {
                 </header>
 
                 {/* Subheader Terminal Banner */}
-                <div className="px-4 sm:px-6 py-2 border-b border-border/40 bg-bg-elevated/20 flex items-center justify-between font-mono text-[11px] text-text-muted">
+                <div className="px-4 sm:px-6 py-2 border-b border-border/40 bg-bg-elevated/20 flex items-center justify-between font-mono text-[11px] text-text-muted touch-none">
                   <div className="flex items-center gap-2">
                     <span className="text-accent-mint font-semibold">System:</span>
                     <span className="truncate">Harshvardhan Sawant Portfolio Engine v2.0 • Groq LPU</span>
@@ -397,7 +401,7 @@ export const ChatBot = () => {
                 <div
                   ref={messagesContainerRef}
                   onScroll={handleScroll}
-                  className="flex-1 overflow-y-auto px-4 sm:px-6 py-4 select-text font-sans scroll-smooth"
+                  className="flex-1 overflow-y-auto overscroll-contain px-4 sm:px-6 py-4 select-text font-sans scroll-smooth"
                 >
                   {messages.map((msg) => (
                     <ChatMessage key={msg.id} message={msg} />

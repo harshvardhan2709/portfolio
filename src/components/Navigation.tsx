@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Download, Sun, Moon } from 'lucide-react';
 import { NAV_ITEMS, PERSONAL } from '../data/constants';
 import { useTheme } from '../context/ThemeContext';
+import { useLockBodyScroll } from '../hooks/useLockBodyScroll';
 
 interface NavigationProps {
   activeSection: string;
@@ -13,12 +14,7 @@ const Navigation = ({ activeSection }: NavigationProps) => {
   const { theme, toggleTheme } = useTheme();
 
   // Lock body scroll when mobile menu is open
-  useEffect(() => {
-    document.body.style.overflow = isMobileMenuOpen ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
-    };
-  }, [isMobileMenuOpen]);
+  useLockBodyScroll(isMobileMenuOpen);
 
   const scrollToSection = (id: string) => {
     const element = document.getElementById(id);

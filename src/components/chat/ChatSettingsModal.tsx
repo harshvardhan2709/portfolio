@@ -7,6 +7,7 @@ import {
   setCustomApiKey,
   setSelectedModel,
 } from '../../services/groqApi';
+import { useLockBodyScroll } from '../../hooks/useLockBodyScroll';
 
 interface ChatSettingsModalProps {
   isOpen: boolean;
@@ -25,6 +26,8 @@ export const ChatSettingsModal = ({
   const [model, setModel] = useState('');
   const [showKey, setShowKey] = useState(false);
   const [savedSuccess, setSavedSuccess] = useState(false);
+
+  useLockBodyScroll(isOpen);
 
   useEffect(() => {
     if (isOpen) {
@@ -49,8 +52,8 @@ export const ChatSettingsModal = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in">
-      <div className="relative w-full max-w-md bg-bg-surface border border-border rounded-2xl shadow-2xl p-5 sm:p-6 overflow-hidden">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm animate-fade-in touch-none overscroll-contain">
+      <div className="relative w-full max-w-md bg-bg-surface border border-border rounded-2xl shadow-2xl p-5 sm:p-6 overflow-hidden overscroll-contain">
         {/* Header */}
         <div className="flex items-center justify-between pb-4 border-b border-border">
           <div className="flex items-center gap-2.5">

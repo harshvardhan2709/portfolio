@@ -23,7 +23,7 @@ export const QuickPrompts = ({ onSelectPrompt, disabled }: QuickPromptsProps) =>
         <Sparkles size={11} className="text-accent-mint" />
         <span>Quick terminal commands:</span>
       </div>
-      <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar mask-fade-r">
+      <div className="flex items-center gap-2 overflow-x-auto pb-1 no-scrollbar mask-fade-r overscroll-contain">
         {PROMPTS.map((item, idx) => (
           <button
             key={idx}
