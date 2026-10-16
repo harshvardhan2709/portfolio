@@ -128,7 +128,7 @@ export const ChatSettingsModal = ({
               </button>
             </div>
             <p className="mt-1.5 text-[11px] text-text-muted leading-relaxed">
-              Your key is saved locally or read from <code className="font-mono text-accent-mint">.env</code> on the server. If not provided, the terminal runs in offline verified portfolio grounding mode.
+              Your key is read from the setting option provided in the chat modal, which is stored locally.
             </p>
           </div>
 

@@ -19,7 +19,7 @@ export default async function handler(req: Request) {
     if (!apiKey) {
       return new Response(
         JSON.stringify({
-          error: 'Missing GROQ_API_KEY in server environment variables.',
+          error: 'Missing GROQ_API_KEY. Please add it in the setting option provided in the chat modal. You can get your API key from https://console.groq.com/keys.',
           code: 'MISSING_API_KEY',
         }),
         {

@@ -188,7 +188,7 @@ export async function streamChatResponse({
     console.warn(`[GroqApi] Call failed: ${errorMsg}. Falling back to grounded local response.`);
 
     const fallbackAnswer = getLocalFallbackResponse(lastUserMessage);
-    const notice = `\n\n> 💡 *Note: Running in verified portfolio grounding mode (${errorMsg}). To enable live Groq responses, add \`GROQ_API_KEY\` to your \`.env\` file or set it in Vercel Project Environment Variables.*`;
+    const notice = `\n\n> 💡 *Note: Running in local grounded mode (${errorMsg}). To enable live responses from Groq, add \`GROQ_API_KEY\` from Groq account and paste it in the setting option provided in the chat modal.*`;
     const fullText = fallbackAnswer + notice;
 
     // Simulate natural typewriter response for fallback

@@ -38,7 +38,7 @@ export default defineConfig(({ mode }) => {
                   res.setHeader('Content-Type', 'application/json');
                   res.end(
                     JSON.stringify({
-                      error: 'Missing GROQ_API_KEY in local .env file.',
+                      error: 'Missing GROQ_API_KEY. Please add it in the setting option in the chat modal. You can get your API key from https://console.groq.com/keys.',
                     })
                   );
                   return;
