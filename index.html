@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" class="light">
+<html lang="en" class="dark">
 
 <head>
   <meta charset="UTF-8" />
@@ -8,8 +8,11 @@
   <script>
     (function () {
       try {
-        var saved = localStorage.getItem('portfolio-theme-v2');
-        var theme = (saved === 'dark' || saved === 'light') ? saved : 'light';
+        if (localStorage.getItem('portfolio-theme-v2')) {
+          localStorage.removeItem('portfolio-theme-v2');
+        }
+        var saved = localStorage.getItem('portfolio-theme');
+        var theme = (saved === 'dark' || saved === 'light') ? saved : 'dark';
         if (theme === 'light') {
           document.documentElement.classList.add('light');
           document.documentElement.classList.remove('dark');
@@ -29,19 +32,19 @@
   <meta name="title" content="Harshvardhan Sawant — Full-Stack & Blockchain Engineer" />
   <meta name="description" content="Full-stack engineer specializing in React, React Native, Node.js, and blockchain development. Building production-grade web and mobile applications." />
   <meta name="author" content="Harshvardhan Sawant" />
-  <meta name="theme-color" content="#f5f6f3" />
+  <meta name="theme-color" content="#090b0a" />
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Harshvardhan Sawant — Full-Stack & Blockchain Engineer" />
   <meta property="og:description" content="Full-stack engineer specializing in React, React Native, Node.js, and blockchain development. Building production-grade web and mobile applications." />
-  <meta property="og:image" content="/profile.jpg" />
+  <meta property="og:image" content="/profile.png" />
 
   <!-- Twitter -->
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Harshvardhan Sawant — Full-Stack & Blockchain Engineer" />
   <meta name="twitter:description" content="Full-stack engineer specializing in React, React Native, Node.js, and blockchain development." />
-  <meta name="twitter:image" content="/profile.jpg" />
+  <meta name="twitter:image" content="/profile.png" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />

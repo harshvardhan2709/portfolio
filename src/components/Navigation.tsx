@@ -4,6 +4,7 @@ import { Menu, X, Download, Sun, Moon } from 'lucide-react';
 import { NAV_ITEMS, PERSONAL } from '../data/constants';
 import { useTheme } from '../context/ThemeContext';
 import { useLockBodyScroll } from '../hooks/useLockBodyScroll';
+import { CasualPhotoModal } from './CasualPhotoModal';
 
 interface NavigationProps {
   activeSection: string;
@@ -11,6 +12,7 @@ interface NavigationProps {
 
 const Navigation = ({ activeSection }: NavigationProps) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isPhotoModalOpen, setIsPhotoModalOpen] = useState(false);
   const { theme, toggleTheme } = useTheme();
 
   // Lock body scroll when mobile menu is open
@@ -33,14 +35,25 @@ const Navigation = ({ activeSection }: NavigationProps) => {
         className="fixed top-4 left-1/2 z-50 glass-nav rounded-full"
         aria-label="Primary"
       >
-        <div className="flex items-center gap-1 sm:gap-1.5 pl-4 pr-1.5 sm:pl-5 sm:pr-2 py-1.5">
-          {/* Monogram */}
+        <div className="flex items-center gap-1 sm:gap-1.5 pl-2.5 sm:pl-3 pr-1.5 sm:pr-2 py-1.5">
+          {/* Monogram / Profile picture trigger */}
           <button
-            onClick={() => scrollToSection('home')}
-            className="mr-2 sm:mr-4 font-serif text-lg text-text-primary hover:text-accent-mint transition-colors duration-300 leading-none"
-            aria-label="Back to top"
+            onClick={() => setIsPhotoModalOpen(true)}
+            className="group flex items-center gap-2 mr-2 sm:mr-3 pl-0.5 py-0.5 rounded-full text-text-primary hover:text-accent-mint transition-colors duration-300 leading-none focus:outline-none cursor-pointer"
+            aria-label="View Harshvardhan's casual photo and profile"
+            title="Click to view casual photo & profile"
           >
-            HS<span className="text-accent-mint">.</span>
+            <div className="relative w-6 h-6 sm:w-7 sm:h-7 rounded-full overflow-hidden border border-border group-hover:border-accent-mint ring-1 ring-transparent group-hover:ring-accent-mint/30 transition-all duration-300 shrink-0 shadow-sm">
+              <img
+                src="/profile.png"
+                alt="Harshvardhan Sawant"
+                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                loading="eager"
+              />
+            </div>
+            <span className="font-serif text-lg leading-none">
+              HS<span className="text-accent-mint">.</span>
+            </span>
           </button>
 
           {/* Desktop links */}
@@ -50,11 +63,10 @@ const Navigation = ({ activeSection }: NavigationProps) => {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 aria-current={activeSection === item.id ? 'true' : undefined}
-                className={`relative px-3 lg:px-3.5 py-1.5 text-label font-mono uppercase transition-colors duration-300 ${
-                  activeSection === item.id
-                    ? 'text-accent-mint'
-                    : 'text-text-muted hover:text-text-primary'
-                }`}
+                className={`relative px-3 lg:px-3.5 py-1.5 text-label font-mono uppercase transition-colors duration-300 ${activeSection === item.id
+                  ? 'text-accent-mint'
+                  : 'text-text-muted hover:text-text-primary'
+                  }`}
               >
                 {item.label}
                 {activeSection === item.id && (
@@ -128,11 +140,10 @@ const Navigation = ({ activeSection }: NavigationProps) => {
                   exit={{ opacity: 0, y: 8 }}
                   transition={{ delay: index * 0.045, duration: 0.3 }}
                   onClick={() => scrollToSection(item.id)}
-                  className={`px-6 py-2.5 font-serif text-3xl transition-colors duration-300 ${
-                    activeSection === item.id
-                      ? 'text-accent-mint italic'
-                      : 'text-text-muted hover:text-text-primary'
-                  }`}
+                  className={`px-6 py-2.5 font-serif text-3xl transition-colors duration-300 ${activeSection === item.id
+                    ? 'text-accent-mint italic'
+                    : 'text-text-muted hover:text-text-primary'
+                    }`}
                 >
                   {item.label}
                 </motion.button>
@@ -157,6 +168,22 @@ const Navigation = ({ activeSection }: NavigationProps) => {
                 </a>
 
                 <button
+                  onClick={() => {
+                    setIsMobileMenuOpen(false);
+                    setIsPhotoModalOpen(true);
+                  }}
+                  className="inline-flex items-center gap-2 px-5 py-2.5 font-mono text-label uppercase text-accent-mint border border-accent/30 rounded-full hover:bg-bg-elevated transition-colors"
+                  aria-label="View photo"
+                >
+                  <img
+                    src="/profile.png"
+                    alt="Harshvardhan Sawant"
+                    className="w-4 h-4 rounded-full object-cover"
+                  />
+                  <span>View Photo</span>
+                </button>
+
+                <button
                   onClick={toggleTheme}
                   className="inline-flex items-center gap-2 px-5 py-2.5 font-mono text-label uppercase text-text-secondary hover:text-text-primary border border-border rounded-full hover:border-border-hover transition-colors"
                   aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
@@ -169,6 +196,13 @@ const Navigation = ({ activeSection }: NavigationProps) => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Casual Profile & Photo Modal */}
+      <CasualPhotoModal
+        isOpen={isPhotoModalOpen}
+        onClose={() => setIsPhotoModalOpen(false)}
+        onScrollToTop={() => scrollToSection('home')}
+      />
     </>
   );
 };
