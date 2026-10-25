@@ -36,7 +36,7 @@ export function buildPortfolioSystemPrompt(): string {
     (exp) => `- **${exp.role}** at **${exp.company}** (${exp.period}, ${exp.type})
   • Focus: ${exp.description}
   • Achievements: ${exp.achievements.join(' ')}
-  • Stack: ${exp.technologies.join(', ')}`
+  • Stack: ${exp.technologies.join(', ')}${exp.certificateUrl ? `\n  • Certificate: ${exp.certificateUrl}` : ''}`
   ).join('\n');
 
   const projectsText = PROJECTS.map(
@@ -115,12 +115,12 @@ Key highlights on his resume:
   // Projects
   if (q.includes('project') || q.includes('built') || q.includes('portfolio') || q.includes('work')) {
     const list = PROJECTS.map((p, i) => `${i + 1}. **${p.title}** (${p.year})\n   *${p.subtitle}*\n   - ${p.solution}\n   - **GitHub**: [Repository Link](${p.github})`).join('\n\n');
-    return `Here are the key projects engineered by Harshvardhan:\n\n${list}\n\nWould you like more details on any specific project, such as the **Blockchain Carbon Credit Platform**, **FotoOwl Gallery**, or the **Offline Music Player**?`;
+    return `Here are the key projects engineered by Harshvardhan:\n\n${list}\n\nWould you like more details on any specific project, such as the **Blockchain Carbon Credit Platform**, **FotoOwl Gallery**, **Offline Music Player**, or **Monopoly Ultimate Banking**?`;
   }
 
   // Experience / Internships
-  if (q.includes('experience') || q.includes('intern') || q.includes('company') || q.includes('job') || q.includes('climekare') || q.includes('athena')) {
-    const list = EXPERIENCES.map((e) => `🏢 **${e.role}** at **${e.company}** (${e.period})\n- ${e.description}\n- **Impact**: ${e.achievements[1] || e.achievements[0]}\n- **Tech**: ${e.technologies.slice(0, 6).join(', ')}`).join('\n\n');
+  if (q.includes('experience') || q.includes('intern') || q.includes('company') || q.includes('job') || q.includes('climekare') || q.includes('athena') || q.includes('certificate')) {
+    const list = EXPERIENCES.map((e) => `🏢 **${e.role}** at **${e.company}** (${e.period})\n- ${e.description}\n- **Impact**: ${e.achievements[1] || e.achievements[0]}\n- **Tech**: ${e.technologies.slice(0, 6).join(', ')}${e.certificateUrl ? `\n- 📜 **Certificate**: [View Completion Certificate](${e.certificateUrl})` : ''}`).join('\n\n');
     return `Harshvardhan has valuable industry engineering experience:\n\n${list}`;
   }
 
@@ -155,12 +155,13 @@ Harshvardhan engineered a **Blockchain-Based Carbon Credit Tokenization Platform
   }
 
   // Mobile / React Native
-  if (q.includes('mobile') || q.includes('react native') || q.includes('expo') || q.includes('app') || q.includes('android') || q.includes('ios')) {
+  if (q.includes('mobile') || q.includes('react native') || q.includes('expo') || q.includes('app') || q.includes('android') || q.includes('ios') || q.includes('monopoly')) {
     return `📱 **Mobile Development Experience**:
 Harshvardhan has extensive experience building cross-platform apps with React Native & Expo:
 1. **FotoOwl Gallery**: High-performance photo discovery app built with Expo SDK 57, NativeWind, Zustand, 2-column infinite scroll, debounced search, per-user scoped favorites, and native sharing.
-2. **Offline Music Player**: Local-first audio player managing 2000+ songs, SQLite indexing for 4000+ files, AI genre classification via Groq API (Llama 3.3 70B), and TCP socket P2P file sharing.
-3. **Athena Automation**: Built cross-platform mobile frontend with role-based access control and cut development time by 40% with a modular component library.`;
+2. **Monopoly Ultimate Banking**: Modern offline-first virtual companion unit built with Expo SDK 57, TypeScript, and AsyncStorage supporting dynamic 5-level rent, auctions, and 23 Event Cards.
+3. **Offline Music Player**: Local-first audio player managing 2000+ songs, SQLite indexing for 4000+ files, AI genre classification via Groq API (Llama 3.3 70B), and TCP socket P2P file sharing.
+4. **Athena Automation**: Built cross-platform mobile frontend with role-based access control and cut development time by 40% with a modular component library.`;
   }
 
   // Who is Harshvardhan / About

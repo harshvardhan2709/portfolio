@@ -125,7 +125,15 @@ function FeaturedCard({ project, index }: { project: Project; index: number }) {
 }
 
 /* Compact archive row for remaining projects */
-function ArchiveRow({ project, index }: { project: Project; index: number }) {
+function ArchiveRow({
+  project,
+  index,
+  startIndex = 4,
+}: {
+  project: Project;
+  index: number;
+  startIndex?: number;
+}) {
   const [ref, isInView] = useInView<HTMLDivElement>();
 
   return (
@@ -144,7 +152,7 @@ function ArchiveRow({ project, index }: { project: Project; index: number }) {
         aria-label={`${project.title} — view repository`}
       >
         <span className="font-mono text-caption text-accent-mint/50 group-hover:text-accent-mint transition-colors">
-          {String(index + 4).padStart(2, '0')}
+          {String(index + startIndex).padStart(2, '0')}
         </span>
         <div className="min-w-0">
           <span className="block font-serif text-heading-sm sm:text-heading text-text-primary group-hover:text-accent-mint transition-colors duration-300 truncate">
@@ -198,7 +206,12 @@ const Projects = () => {
           </div>
           <div className="border-t border-border">
             {archive.map((project, i) => (
-              <ArchiveRow key={project.title} project={project} index={i} />
+              <ArchiveRow
+                key={project.title}
+                project={project}
+                index={i}
+                startIndex={featured.length + 1}
+              />
             ))}
           </div>
         </div>

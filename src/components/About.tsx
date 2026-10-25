@@ -1,5 +1,6 @@
 import { SectionHeading } from './ui/SectionHeading';
 import { AnimatedSection } from './ui/AnimatedSection';
+import { PROJECTS } from '../data/projects';
 
 const HIGHLIGHTS = [
   { label: 'Frontend & Mobile', value: 'React.js · React Native · TypeScript' },
@@ -12,7 +13,7 @@ const HIGHLIGHTS = [
 const STATS = [
   { value: '12', label: 'Months interned' },
   { value: '2', label: 'Companies' },
-  { value: '6', label: 'Projects shipped' },
+  { value: `${PROJECTS.length}`, label: 'Projects shipped' },
   { value: '15+', label: 'Technologies' },
 ];
 

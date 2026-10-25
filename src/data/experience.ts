@@ -6,6 +6,7 @@ export interface Experience {
   description: string;
   achievements: string[];
   technologies: string[];
+  certificateUrl?: string;
 }
 
 export const EXPERIENCES: Experience[] = [
@@ -22,6 +23,7 @@ export const EXPERIENCES: Experience[] = [
       'Owned frontend–backend integration across the application, ensuring consistent API contracts and reliable feature delivery.',
     ],
     technologies: ['React.js', 'Node.js', 'Express.js', 'MongoDB', 'RESTful APIs', 'JWT Authentication', 'Role-Based Authorization', 'Solidity', 'ERC-1155'],
+    certificateUrl: 'https://drive.google.com/file/d/1BG7ToFSod36j3Nhpv8bYvexnW5A9qhkx/view?usp=sharing',
   },
   {
     company: 'Athena Automation',
@@ -35,6 +37,7 @@ export const EXPERIENCES: Experience[] = [
       'Delivered the complete React Native frontend across scheduled releases with zero delays, collaborating in a 3-member team and owning all UI modules end-to-end.',
     ],
     technologies: ['React Native', 'TypeScript', 'JavaScript', 'REST APIs', 'Role-Based Access Control', 'UI Component Library'],
+    certificateUrl: 'https://drive.google.com/file/d/12cWB9WxFpMFfpyTpoeDkoJQ6FbadCgD5/view?usp=sharing',
   },
 ];
 

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion';
+import { Award, ArrowUpRight } from 'lucide-react';
 import { useInView } from '../hooks/useInView';
 import { SectionHeading } from './ui/SectionHeading';
 import { EXPERIENCES } from '../data/experience';
@@ -65,9 +66,24 @@ const Experience = () => {
                     </span>
                   </div>
 
-                  <p className="font-mono text-caption text-accent-mint mb-4">
-                    {exp.company}
-                  </p>
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-4">
+                    <p className="font-mono text-caption text-accent-mint font-medium">
+                      {exp.company}
+                    </p>
+                    {exp.certificateUrl && (
+                      <a
+                        href={exp.certificateUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-accent/40 bg-accent/10 hover:bg-accent/20 font-mono text-label uppercase text-accent-mint transition-all duration-300 hover:scale-[1.02]"
+                        aria-label={`${exp.company} — View Completion Certificate`}
+                      >
+                        <Award size={13} />
+                        <span>Completion Certificate</span>
+                        <ArrowUpRight size={13} />
+                      </a>
+                    )}
+                  </div>
 
                   <p className="text-body text-text-secondary leading-relaxed mb-6">
                     {exp.description}
